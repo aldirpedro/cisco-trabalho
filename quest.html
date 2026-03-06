@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perguntas — NetProject</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">NET<span>//</span>PROJECT</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="servers.html">Servidores</a></li>
+    <li><a href="questions.html" class="active">Perguntas</a></li>
+    <li><a href="users.html">Utilizadores</a></li>
+  </ul>
+</nav>
+
+<div class="section" style="padding-top:3rem">
+  <div class="section-header">
+    <div class="section-tag">// Avaliação</div>
+    <h1 class="section-title">Perguntas &amp; Respostas</h1>
+    <p class="section-sub">Clique em cada pergunta para revelar a resposta completa e didática.</p>
+  </div>
+
+  <!-- Q1 -->
+  <div class="qa-item open" id="q1">
+    <div class="qa-question" onclick="toggleQA('q1')">
+      <span class="qa-num">01</span>
+      <h3>Explique de que forma os seguintes serviços trabalham em conjunto numa rede empresarial: DHCP, DNS, WEB, EMAIL.</h3>
+      <i class="qa-chevron">▼</i>
+    </div>
+    <div class="qa-answer">
+      <p>Numa rede empresarial moderna, estes quatro serviços formam uma cadeia interdependente que permite a comunicação e o acesso a recursos digitais de forma transparente para o utilizador.</p>
+      <br>
+      <ul>
+        <li>
+          <strong>1º — DHCP (atribuição automática de endereços):</strong><br>
+          Quando um computador, smartphone ou qualquer dispositivo se liga à rede, o primeiro passo é obter um endereço IP. O servidor DHCP responde a um <em>broadcast</em> do cliente e atribui automaticamente: endereço IP, máscara de sub-rede, gateway padrão e o endereço do servidor DNS. Sem esta etapa, o dispositivo não consegue comunicar com outros na rede.
+        </li>
+        <br>
+        <li>
+          <strong>2º — DNS (resolução de nomes):</strong><br>
+          Com o IP já configurado, quando o utilizador escreve um endereço como <span class="mono" style="color:var(--accent)">www.empresa.pt</span> no browser, o sistema operativo consulta o servidor DNS (cujo IP foi fornecido pelo DHCP). O DNS traduz esse nome para o endereço IP real do servidor WEB. Se o DNS falhar, nenhum serviço identificado por nome estará acessível.
+        </li>
+        <br>
+        <li>
+          <strong>3º — WEB (acesso a páginas e aplicações):</strong><br>
+          Com o IP do servidor resolvido pelo DNS, o browser pode agora enviar um pedido HTTP/HTTPS ao servidor WEB. Este responde com o conteúdo solicitado (HTML, imagens, dados). Numa empresa, o servidor WEB pode alojar a intranet, o portal de recursos humanos, sistemas ERP ou qualquer aplicação interna.
+        </li>
+        <br>
+        <li>
+          <strong>4º — EMAIL (comunicação assíncrona):</strong><br>
+          O servidor de email também depende do DNS — quando envia uma mensagem para <span class="mono" style="color:var(--accent)">colaborador@parceiro.com</span>, consulta os registos MX do domínio <span class="mono" style="color:var(--accent)">parceiro.com</span> para saber qual servidor de email contactar. O DHCP garante que o cliente de email tenha conectividade, o DNS resolve os endereços dos servidores de mail, e o SMTP/IMAP/POP3 tratam do envio e receção.
+        </li>
+      </ul>
+      <br>
+      <p><strong>Em resumo:</strong> o DHCP é o "ponto de entrada" na rede; o DNS é o "intérprete" que converte nomes em endereços; o WEB e o EMAIL são os "serviços de topo" que dependem dos dois anteriores para funcionar.</p>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qa-item" id="q2">
+    <div class="qa-question" onclick="toggleQA('q2')">
+      <span class="qa-num">02</span>
+      <h3>Indique uma situação prática em que FTP pode ser utilizado numa escola.</h3>
+      <i class="qa-chevron">▼</i>
+    </div>
+    <div class="qa-answer">
+      <p>O FTP (File Transfer Protocol) tem várias aplicações práticas num ambiente escolar:</p>
+      <br>
+      <ul>
+        <li>
+          <strong>Partilha de materiais didáticos:</strong><br>
+          Um professor de informática pode fazer <em>upload</em> de apresentações, exercícios práticos, softwares e vídeos tutoriais para o servidor FTP da escola. Os alunos acedem ao servidor com as suas credenciais e fazem <em>download</em> dos ficheiros diretamente para os seus computadores — sem necessidade de pen drives ou emails volumosos.
+        </li>
+        <br>
+        <li>
+          <strong>Entrega de trabalhos dos alunos:</strong><br>
+          Os alunos podem fazer <em>upload</em> dos seus projetos para uma pasta específica do servidor FTP (ex.: <span class="mono" style="color:var(--accent)">/entregas/turma-12A/</span>). O professor acede remotamente e avalia os trabalhos sem deslocações físicas.
+        </li>
+        <br>
+        <li>
+          <strong>Publicação do site escolar:</strong><br>
+          O webmaster da escola utiliza FTP para publicar e atualizar as páginas HTML do site oficial, fazendo <em>upload</em> dos ficheiros para o servidor WEB.
+        </li>
+        <br>
+        <li>
+          <strong>Backup centralizado:</strong><br>
+          O servidor FTP serve de repositório central para backups de dados importantes — fichas de alunos, registos administrativos — com acesso controlado por utilizador e password.
+        </li>
+      </ul>
+      <br>
+      <p><strong>Vantagem prática:</strong> o FTP permite transferências de ficheiros muito grandes (vídeos, pacotes de software) de forma eficiente, algo que seria impraticável por email. Com permissões bem definidas (leitura, escrita, exclusão por pasta), é possível implementar um sistema de partilha seguro e organizado.</p>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qa-item" id="q3">
+    <div class="qa-question" onclick="toggleQA('q3')">
+      <span class="qa-num">03</span>
+      <h3>O que aconteceria se o servidor DNS falhasse?</h3>
+      <i class="qa-chevron">▼</i>
+    </div>
+    <div class="qa-answer">
+      <p>A falha do servidor DNS teria consequências imediatas e graves para toda a rede, mesmo que os outros servidores (WEB, EMAIL, FTP) continuassem a funcionar normalmente:</p>
+      <br>
+      <ul>
+        <li>
+          <strong>Impossibilidade de aceder a sites por nome:</strong><br>
+          Os utilizadores não conseguiriam abrir <span class="mono" style="color:var(--accent)">www.escola.pt</span> no browser. A única alternativa seria escrever diretamente o endereço IP (ex.: <span class="mono" style="color:var(--accent)">192.168.7.10</span>), o que é impraticável para a maioria dos utilizadores e impossível se não souberem os IPs.
+        </li>
+        <br>
+        <li>
+          <strong>Email deixa de funcionar:</strong><br>
+          O envio de emails falha porque o servidor de email não consegue resolver os registos MX dos domínios destinatários. As mensagens acumular-se-iam na fila de envio.
+        </li>
+        <br>
+        <li>
+          <strong>Serviços cloud e externos indisponíveis:</strong><br>
+          Qualquer serviço que dependa de resolução de nomes (Microsoft 365, Google Workspace, atualizações automáticas) ficaria inacessível.
+        </li>
+        <br>
+        <li>
+          <strong>Impacto nos clientes DHCP:</strong><br>
+          Se o servidor DNS falhar antes de um cliente receber as suas configurações DHCP, o campo "DNS Server" na configuração de rede ficará em branco ou apontará para um servidor inativo.
+        </li>
+        <br>
+        <li>
+          <strong>Soluções de mitigação:</strong><br>
+          — Configurar um <em>DNS secundário</em> (servidor de redundância) como failover<br>
+          — Usar servidores DNS públicos como backup (ex.: 8.8.8.8 da Google)<br>
+          — Implementar cache DNS local nos routers para responder enquanto o servidor principal está em baixo<br>
+          — Monitorização ativa com alertas automáticos
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qa-item" id="q4">
+    <div class="qa-question" onclick="toggleQA('q4')">
+      <span class="qa-num">04</span>
+      <h3>Em que situação é recomendado usar IP estático em vez de DHCP?</h3>
+      <i class="qa-chevron">▼</i>
+    </div>
+    <div class="qa-answer">
+      <p>O IP estático (configurado manualmente, sempre o mesmo) é recomendado em situações onde o endereço IP de um dispositivo <strong>nunca pode mudar</strong>, pois outros dispositivos ou serviços dependem de encontrá-lo sempre no mesmo endereço:</p>
+      <br>
+      <ul>
+        <li>
+          <strong>Servidores (WEB, EMAIL, DNS, DHCP, FTP):</strong><br>
+          É o caso mais crítico. Se o servidor DNS tiver um IP dinâmico e este mudar, todos os clientes que apontam para ele deixarão de ter resolução de nomes. O mesmo aplica-se a WEB e EMAIL — os clientes precisam de saber sempre onde encontrar esses servidores.
+        </li>
+        <br>
+        <li>
+          <strong>Impressoras de rede:</strong><br>
+          Quando um utilizador configura uma impressora de rede, guarda o seu endereço IP. Se a impressora receber um IP diferente do DHCP após reiniciar, a impressão falha. Com IP estático, a impressora está sempre acessível.
+        </li>
+        <br>
+        <li>
+          <strong>Câmeras de vigilância e IoT:</strong><br>
+          O software de gravação e monitorização acede às câmeras por IP. Um IP dinâmico tornaria o sistema de segurança instável.
+        </li>
+        <br>
+        <li>
+          <strong>Routers e switches geridos:</strong><br>
+          Os equipamentos de rede precisam de IPs fixos para que os administradores consigam aceder à sua interface de gestão de forma consistente.
+        </li>
+        <br>
+        <li>
+          <strong>Servidores de jogos ou aplicações:</strong><br>
+          Qualquer servidor ao qual os clientes se ligam diretamente pelo IP beneficia de endereço estático.
+        </li>
+        <br>
+        <li>
+          <strong>Alternativa elegante — Reserva DHCP:</strong><br>
+          Em vez de configurar o IP manualmente no dispositivo, é possível configurar o servidor DHCP para atribuir sempre o mesmo IP a um dispositivo específico, com base no seu endereço MAC. Combina a gestão centralizada do DHCP com a previsibilidade do IP estático.
+        </li>
+      </ul>
+      <br>
+      <p><strong>Regra prática:</strong> se um dispositivo <em>presta serviço</em> a outros, use IP estático (ou reserva DHCP). Se um dispositivo <em>consome serviços</em>, use DHCP.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  NETPROJECT &copy; 2025 — Projeto Educacional de Redes e Servidores
+</footer>
+
+<script>
+function toggleQA(id) {
+  const item = document.getElementById(id);
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

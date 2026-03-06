@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação de Rede - Cisco Packet Tracer</title>
+    <link rel="stylesheet" href="frontend/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .image-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-card-content {
+            padding: 20px;
+        }
+
+        .image-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .image-card p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .full-width-section {
+            margin-top: 30px;
+        }
+
+        .full-width-section img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #0066cc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .description h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .description p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .key-points {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h2 {
+                font-size: 20px;
+            }
+
+            .section h3 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>CISCO - Documentação de Rede</h1>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h2>Projeto de Rede com Cisco Packet Tracer</h2>
+            <p>Documentação técnica e visual do projeto de infraestrutura de rede, incluindo configurações de DNS, DHCP, WiFi e topologia lógica/física da rede.</p>
+        </div>
+
+        <!-- Seção 1: Configurações DNS -->
+        <div class="section">
+            <h3>1. Configuração de Serviço DNS</h3>
+            
+            <div class="description">
+                <h5>O que é DNS?</h5>
+                <p>O Domain Name System (DNS) é um serviço que traduz nomes de domínio legíveis (como www.example.com) em endereços IP (como 192.168.1.1). É essencial para a navegação na internet.</p>
+            </div>
+
+            <div class="full-width-section">
+                <img src="Cisco-estrutura.pkt" alt="Configuração DNS no Cisco Packet Tracer">
+                <div class="description">
+                    <h5>Detalhes da Imagem 1: Interface de Serviços DNS</h5>
+                    <p>Esta imagem mostra a aba "Services" do Cisco Packet Tracer, onde está configurado o servidor DNS. Os serviços visíveis incluem:</p>
+                    <ul class="key-points">
+                        <li><strong>HTTP:</strong> Protocolo de transferência de hipertexto</li>
+                        <li><strong>DHCP:</strong> Protocolo de configuração dinâmica de hospedeiro</li>
+                        <li><strong>TFTP:</strong> Protocolo trivial de transferência de arquivo</li>
+                        <li><strong>DNS:</strong> Sistema de nomes de domínio (configurado)</li>
+                        <li><strong>Syslog:</strong> Sistema de registros de eventos</li>
+                        <li><strong>AAA:</strong> Authentication, Authorization and Accounting</li>
+                    </ul>
+                    <p><strong>Configurações principais:</strong> O servidor DNS está ativo e configurado para resolver nomes de domínio. A entrada "Add rows" mostra um endereço IP 192.168.7.6, indicando que foi adicionado um registro DNS.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 2: Redes WiFi Configuradas -->
+        <div class="section">
+            <h3>2. Redes Wireless (WiFi) Configuradas</h3>
+            
+            <div class="description">
+                <h5>Estrutura de Redes WiFi</h5>
+                <p>O projeto utiliza três redes WiFi separadas para diferentes propósitos, cada uma com suas próprias configurações de segurança e banda de frequência.</p>
+            </div>
+
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="Cisco-estrutura.pkt" alt="WiFi PROFESSORES">
+                    <div class="image-card-content">
+                        <h4>WiFi PROFESSORES</h4>
+                        <p><strong>Banda:</strong> 2.4 GHz</p>
+                        <p><strong>Modo:</strong> Infrastructure</p>
+                        <p><strong>Tipo de Rede:</strong> Mixed B/G/N</p>
+                        <p><strong>Segurança:</strong> WPA2-PSK</p>
+                        <p>Rede dedicada para uso dos docentes com autenticação forte.</p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="Cisco-estrutura.pkt" alt="WiFi CONVIDADOS">
+                    <div class="image-card-content">
+                        <h4>WiFi CONVIDADOS</h4>
+                        <p><strong>Banda:</strong> 2.4 GHz</p>
+                        <p><strong>Tipo de Rede:</strong> Mixed B/G/N</p>
+                        <p><strong>Segurança:</strong> WPA2-PSK</p>
+                        <p><strong>Cobertura:</strong> 256 metros</p>
+                        <p>Rede aberta mas segura para visitantes e convidados da instituição.</p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="Cisco-estrutura.pkt" alt="WiFi ALUNOS">
+                    <div class="image-card-content">
+                        <h4>WiFi ALUNOS</h4>
+                        <p><strong>Banda:</strong> 2.4 GHz</p>
+                        <p><strong>Tipo de Rede:</strong> Mixed B/G/N</p>
+                        <p><strong>Segurança:</strong> WPA2-PSK</p>
+                        <p><strong>Cobertura:</strong> 256 metros</p>
+                        <p>Rede exclusiva para acesso dos alunos com autenticação WPA2.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description">
+                <h5>Especificações Técnicas das Redes WiFi</h5>
+                <ul class="key-points">
+                    <li><strong>Padrão 802.11:</strong> Suporte a B/G/N garante compatibilidade com diversos dispositivos</li>
+                    <li><strong>Frequência 2.4 GHz:</strong> Banda mais comum, maior alcance e compatibilidade</li>
+                    <li><strong>WPA2-PSK:</strong> Encriptação AES, padrão de segurança atual mais robusto</li>
+                    <li><strong>Cobertura de 256m:</strong> Ideal para ambientes educacionais de médio porte</li>
+                    <li><strong>Segregação de rede:</strong> Três VLANs diferentes para diferentes grupos de usuários</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Seção 3: Monitor de Redes Wireless -->
+        <div class="section">
+            <h3>3. Monitor de Redes Wireless - Análise de Conectividade</h3>
+            
+            <div class="description">
+                <h5>Ferramenta de Monitoramento</h5>
+                <p>O Wireless Network Monitor v1.0 é uma ferramenta integrada ao Cisco Packet Tracer que permite visualizar todas as redes WiFi disponíveis e seus indicadores de sinal.</p>
+            </div>
+
+            <div class="full-width-section">
+                <img src="Cisco-estrutura.pkt" alt="Wireless Network Monitor - Visão Geral">
+                <div class="description">
+                    <h5>Detalhes da Imagem: Interface do Monitor Wireless</h5>
+                    <p>O monitor exibe através de três abas principais:</p>
+                    <ul class="key-points">
+                        <li><strong>Link Information:</strong> Mostra detalhes de conexão e informações de enlace</li>
+                        <li><strong>Connect:</strong> Interface para selecionar e conectar a redes disponíveis</li>
+                        <li><strong>Profiles:</strong> Gerencia perfis de conexão e configurações salvas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="full-width-section">
+                <img src="Cisco-estrutura.pkt" alt="Monitor - Redes Disponíveis">
+                <div class="description">
+                    <h5>Redes Detectadas no Monitor</h5>
+                    <p>A segunda imagem mostra as três redes WiFi disponíveis na área:</p>
+                    <ul class="key-points">
+                        <li><strong>WIFI_PROFESSORES:</strong> Sinal: 65% | Modo: Infrastructure | Tipo: Mixed B/G/N</li>
+                        <li><strong>WIFI_ALUNOS:</strong> Sinal: 65% | Tipo: Mixed B/G/N</li>
+                        <li><strong>WIFI_CONVIDADOS:</strong> Sinal: 85% | Tipo: Mixed B/G/N</li>
+                    </ul>
+                    <p><strong>Site Information:</strong> Exibe dados de segurança (WPA2-PSK), tipo de rede e endereço MAC (0001.C919.6CCB).</p>
+                    <p><strong>Adapter Status:</strong> "Adapter is Active" - O adaptador wireless está funcionando corretamente.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 4: Topologia Lógica da Rede -->
+        <div class="section">
+            <h3>4. Topologia Lógica da Rede - Visão Geral</h3>
+            
+            <div class="description">
+                <h5>Arquitetura da Rede</h5>
+                <p>A topologia lógica mostra como os componentes de rede estão interconectados e como o tráfego de dados flui através da infraestrutura.</p>
+            </div>
+
+            <div class="full-width-section">
+                <img src="Cisco-estrutura.pkt" alt="Topologia Lógica da Rede">
+                <div class="description">
+                    <h5>Componentes Principais da Topologia</h5>
+                    <ul class="key-points">
+                        <li><strong>Switch Central (2960):</strong> Núcleo da rede, conecta todos os dispositivos</li>
+                        <li><strong>Servidores:</strong> Incluem servidor web, email, DHCP, DNS e FTP</li>
+                        <li><strong>Router (2911):</strong> Conecta a rede interna à internet</li>
+                        <li><strong>WiFi Access Points:</strong> Três pontos de acesso para as redes wireless</li>
+                        <li><strong>Clientes:</strong> PCs e laptops conectados via cabo ou WiFi</li>
+                        <li><strong>Impressoras:</strong> Conectadas à rede para uso compartilhado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 5: Terminal e Configurações -->
+        <div class="section">
+            <h3>5. Configurações de Terminal - Testes de Conectividade</h3>
+            
+            <div class="description">
+                <h5>Verificação de Rede via CLI</h5>
+                <p>As linhas de comando mostram testes de conectividade e configurações de rede em dois dispositivos: Miguel e Alder.</p>
+            </div>
+
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="Cisco-estrutura.pkt" alt="Terminal - Miguel">
+                    <div class="image-card-content">
+                        <h4>Configuração - Miguel</h4>
+                        <p><strong>Conexão:</strong> Wireless (padrão)</p>
+                        <p><strong>IPv6 Address:</strong> FE80::290:21FF:FEE8:A75A</p>
+                        <p><strong>IPv4 Address:</strong> 192.168.7.10</p>
+                        <p><strong>Subnet Mask:</strong> 255.255.255.0</p>
+                        <p>Mostra informações de configuração TCP/IP atribuídas pelo DHCP.</p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="Cisco-estrutura.pkt" alt="Terminal - Alder">
+                    <div class="image-card-content">
+                        <h4>Teste de Ping - Alder</h4>
+                        <p><strong>Alvo:</strong> 192.168.7.12</p>
+                        <p><strong>Resultado:</strong> 4 pacotes enviados</p>
+                        <p><strong>Tempo de ida e volta:</strong> ~13ms, ~5ms, ~8ms, ~9ms</p>
+                        <p>Teste bem-sucedido demonstrando conectividade entre dispositivos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description">
+                <h5>Análise dos Testes</h5>
+                <ul class="key-points">
+                    <li><strong>Atribuição DHCP:</strong> Ambos os dispositivos recebem IPs automaticamente</li>
+                    <li><strong>Range de IP:</strong> 192.168.7.x (rede privada Classe C)</li>
+                    <li><strong>Gateway:</strong> 192.168.7.2 (encaminhador padrão)</li>
+                    <li><strong>Latência baixa:</strong> Tempo de resposta entre 5-13ms indica boa performance</li>
+                    <li><strong>0% perda de pacotes:</strong> Conexão estável sem intermitências</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Seção 6: Visão Física -->
+        <div class="section">
+            <h3>6. Visão Física - Aspecto dos Equipamentos</h3>
+            
+            <div class="description">
+                <h5>Componentes Físicos</h5>
+                <p>A visualização física mostra como os dispositivos estão fisicamente montados e seus conectores reais.</p>
+            </div>
+
+            <div class="full-width-section">
+                <img src="Cisco-estrutura.pkt" alt="Visão Física de Equipamentos">
+                <div class="description">
+                    <h5>Módulos Visíveis</h5>
+                    <ul class="key-points">
+                        <li><strong>Cisco 2960 Switch:</strong> 24 portas Ethernet para conexão de dispositivos</li>
+                        <li><strong>Módulo WPC300N:</strong> Adaptador WiFi com suporte b/g/n</li>
+                        <li><strong>Interfaces:</strong> RJ-45 para conexões com fio</li>
+                        <li><strong>LED Indicators:</strong> Mostram status de potência, atividade e link</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 7: Configuração DHCP -->
+        <div class="section">
+            <h3>7. Configuração do Servidor DHCP</h3>
+            
+            <div class="description">
+                <h5>Dynamic Host Configuration Protocol (DHCP)</h5>
+                <p>O DHCP é responsável por atribuir automaticamente endereços IP aos dispositivos que se conectam à rede.</p>
+            </div>
+
+            <div class="full-width-section">
+                <img src="Cisco-estrutura.pkt" alt="Configuração DHCP">
+                <div class="description">
+                    <h5>Parâmetros DHCP Configurados</h5>
+                    <ul class="key-points">
+                        <li><strong>IP Configuration:</strong> IP estático 192.168.7.4 para o próprio servidor</li>
+                        <li><strong>Subnet Mask:</strong> 255.255.255.0</li>
+                        <li><strong>Default Gateway:</strong> 192.168.7.2</li>
+                        <li><strong>DNS Server:</strong> 192.168.7.2</li>
+                        <li><strong>DHCP Pool:</strong> Range de IPs para distribuição dinâmica</li>
+                        <li><strong>Lease Time:</strong> Tempo de concessão do IP</li>
+                    </ul>
+                    <p><strong>Configuração PyV:</strong> Ambos IPv4 e IPv6 estão configurados para suportar ambos os protocolos de internet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo Final -->
+        <div class="section">
+            <h3>Resumo da Infraestrutura de Rede</h3>
+            
+            <div class="description">
+                <h5>Características Principais do Projeto</h5>
+                <ul class="key-points">
+                    <li>✓ <strong>3 Redes WiFi Segregadas:</strong> Professores, Alunos e Convidados</li>
+                    <li>✓ <strong>Servidor DNS Funcional:</strong> Resolução de nomes de domínio</li>
+                    <li>✓ <strong>Servidor DHCP Ativo:</strong> Atribuição automática de IPs</li>
+                    <li>✓ <strong>Segurança WPA2:</strong> Encriptação forte em todas as redes</li>
+                    <li>✓ <strong>Conectividade Testada:</strong> Pings bem-sucedidos entre dispositivos</li>
+                    <li>✓ <strong>Topologia Escalável:</strong> Possibilidade de expansão futura</li>
+                    <li>✓ <strong>Monitor Wireless Integrado:</strong> Ferramenta de diagnóstico</li>
+                </ul>
+            </div>
+
+            <div class="description" style="border-left-color: #00aa00;">
+                <h5 style="color: #00aa00;">Status da Rede</h5>
+                <p><strong>Todos os serviços estão operacionais e funcionando corretamente.</strong> A infraestrutura oferece conectividade robusta, segura e com bom desempenho para ambientes educacionais.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

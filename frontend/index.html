@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cisco Network - Dashboard Principal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-section {
+            margin: 60px auto;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-card a {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .feature-card a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 60px auto;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .documentation-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 60px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .documentation-section h2 {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .doc-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .doc-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .doc-item p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .code-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 60px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-section h2 {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.1);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                margin: 30px auto;
+                padding: 30px 20px;
+            }
+
+            .hero-section h1 {
+                font-size: 32px;
+            }
+
+            .hero-section p {
+                font-size: 14px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <h1>🖧 </h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="servers.html">Servidores</a></li>
+            <li><a href="questions.html">Perguntas</a></li>
+            <li><a href="users.html">Usuários</a></li>
+            <li><a href="image-guide.html">📸 Guia de Imagens</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>🌐 Infraestrutura de Rede CISCO</h1>
+            <p>Documentação completa e interativa sobre o projeto de infraestrutura de rede implementado em Cisco Packet Tracer. Explore servidores, configurações, testes de conectividade e muito mais.</p>
+            <div class="cta-buttons">
+                <a href="servers.html" class="btn btn-primary">📚 Ver Documentação</a>
+                <a href="network_documentation.html" class="btn btn-secondary">🔍 Análise Técnica</a>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Servidores Implementados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Redes WiFi Configuradas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Taxa de Conectividade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">192.168.7.x</div>
+                <div class="stat-label">Rede Interna</div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>DNS Configurado</h3>
+                <p>Servidor DNS operacional resolvendo nomes de domínio internamente com suporte IPv4 e IPv6.</p>
+                <a href="servers.html">Saiba mais →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔌</div>
+                <h3>DHCP Dinâmico</h3>
+                <p>Atribuição automática de endereços IP com configuração de gateway, máscara e servidores DNS.</p>
+                <a href="servers.html">Saiba mais →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📡</div>
+                <h3>WiFi Segregado</h3>
+                <p>Três redes wireless independentes com encriptação WPA2 para diferentes grupos de usuários.</p>
+                <a href="network_documentation.html">Saiba mais →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Web Server</h3>
+                <p>Servidor HTTP/HTTPS hospedando aplicações web com suporte completo a protocolos modernos.</p>
+                <a href="servers.html">Saiba mais →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✉️</div>
+                <h3>Email Server</h3>
+                <p>Sistema completo de correio eletrônico com suporte SMTP, POP3 e IMAP para múltiplos usuários.</p>
+                <a href="servers.html">Saiba mais →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📁</div>
+                <h3>FTP Server</h3>
+                <p>Servidor de transferência de arquivos com autenticação e suporte para upload/download.</p>
+                <a href="servers.html">Saiba mais →</a>
+            </div>
+        </div>
+
+        <!-- Documentation Section -->
+        <div class="documentation-section">
+            <h2>📚 Recursos de Documentação</h2>
+            <div class="doc-grid">
+                <div class="doc-item">
+                    <h4>🖧 Topologia de Rede</h4>
+                    <p>Visão completa da arquitetura física e lógica da rede, incluindo switches, routers e dispositivos finais.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>⚙️ Configurações Técnicas</h4>
+                    <p>Detalhes de cada servidor, incluindo IPs estáticos, portas de serviço e parâmetros de funcionamento.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>✅ Testes Realizados</h4>
+                    <p>Resultados de testes de conectividade (ping) com latência medida e análise de performance.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>🔒 Segurança</h4>
+                    <p>Implementação de encriptação WPA2-PSK em redes wireless e autenticação em serviços críticos.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>👥 Equipe de Desenvolvimento</h4>
+                    <p>Perfis e responsabilidades dos membros que implementaram a infraestrutura de rede.</p>
+                </div>
+                <div class="doc-item">
+                    <h4>📊 Monitoramento</h4>
+                    <p>Ferramentas e métricas para monitoramento contínuo da saúde e performance da rede.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Section -->
+        <div class="code-section">
+            <h2>�️ O Que é Cisco Packet Tracer?</h2>
+            <p style="text-align: left; color: #666; margin-bottom: 20px; line-height: 1.8;">
+                <strong>Cisco Packet Tracer</strong> é um simulador de rede desenvolvido pela Cisco Systems que permite:
+            </p>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <p><strong>✓ Criar Topologias de Rede:</strong> Desenhar redes com routers, switches, computadores e outros dispositivos sem precisar de hardware real</p><br>
+                <p><strong>✓ Configurar Dispositivos:</strong> Acessar CLI (Command Line Interface) de routers e switches, aplicar configurações reais de networking</p><br>
+                <p><strong>✓ Simular Comunicação:</strong> Verificar se os pacotes de dados conseguem passar de um ponto a outro da rede</p><br>
+                <p><strong>✓ Testar Conectividade:</strong> Realizar testes de Ping, traceroute e outras ferramentas de diagnóstico</p><br>
+                <p><strong>✓ Aprender Networking:</strong> Usar em ambientes educacionais para entender protocolos e topologias sem custo</p>
+            </div>
+
+            <h3 style="color: #333; margin-top: 30px; margin-bottom: 15px;">🔧 Como Nossa Rede Foi Construída</h3>
+            <div style="background: white; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <p><strong>1. Planejamento:</strong> Definimos uma arquitetura com 1 router, 1 switch central, 6 servidores especializados, 3 access points WiFi e múltiplos clientes</p>
+                <p style="margin-top: 10px;"><strong>2. Adição de Dispositivos:</strong> Adicionamos cada dispositivo no Packet Tracer através da interface de drag-and-drop</p>
+                <p style="margin-top: 10px;"><strong>3. Conexões:</strong> Conectamos os dispositivos com cabos Ethernet (para cabeados) e configuramos access points para wireless</p>
+                <p style="margin-top: 10px;"><strong>4. Configuração de Servidores:</strong> Configuramos DNS, DHCP, Web, Email, FTP e outros serviços na aba "Services" de cada servidor</p>
+                <p style="margin-top: 10px;"><strong>5. Testes:</strong> Usamos o comando Ping para verificar se a conectividade estava funcionando entre os dispositivos</p>
+            </div>
+
+            <h2 style="margin-top: 40px;">📖 Explicação dos Servidores</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">Cada servidor tem um propósito específico na infraestrutura:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🌐 DNS Server</h4>
+                    <p style="font-size: 13px; color: #666; line-height: 1.6;">Traduz nomes (www.escola.pt) em números IP (192.168.7.5). Sem ele, você precisaria memorizar todos os números!</p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🔌 DHCP Server</h4>
+                    <p style="font-size: 13px; color: #666; line-height: 1.6;">Atribui IPs automaticamente. Quando você conecta um PC, o DHCP dá um endereço IP sem precisar configurar manualmente.</p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🌍 Web Server</h4>
+                    <p style="font-size: 13px; color: #666; line-height: 1.6;">Hospeda páginas web. Quando você digita um endereço no navegador, o web server responde com HTML/CSS.</p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">✉️ Email Server</h4>
+                    <p style="font-size: 13px; color: #666; line-height: 1.6;">Gerencia emails. SMTP envia, POP3/IMAP recebem. Funciona como uma agência de correios digital.</p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">📁 FTP Server</h4>
+                    <p style="font-size: 13px; color: #666; line-height: 1.6;">Transfere arquivos. Professores podem fazer upload de aulas, alunos fazem download de materiais.</p>
+                </div>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">⚙️ TFTP Server</h4>
+                    <p style="font-size: 13px; color: #666; line-height: 1.6;">FTP simplificado, sem autenticação. Usado para boot de dispositivos de rede e atualizações rápidas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Section -->
+        <div class="code-section">
+            <h2>�🚀 Como Iniciar</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">Siga os passos abaixo para começar a explorar a documentação da rede:</p>
+            
+            <h4 style="color: #333; margin-top: 30px;">1. Navegue pela Documentação</h4>
+            <p style="color: #666;">Acesse a página de Servidores para explorar cada componente da infraestrutura:</p>
+            <div class="code-block">
+📚 Servidores → Documentação detalhada de:
+   ├── DNS (Domain Name System)
+   ├── DHCP (Dynamic Host Configuration)
+   ├── Web Server (HTTP/HTTPS)
+   ├── Email Server (SMTP/POP3/IMAP)
+   ├── FTP Server (File Transfer)
+   └── TFTP Server (Trivial File Transfer)
+            </div>
+
+            <h4 style="color: #333; margin-top: 30px;">2. Explore a Topologia de Rede</h4>
+            <p style="color: #666;">Visualize como os componentes estão conectados:</p>
+            <div class="code-block">
+🏗️ Topologia da Rede:
+   ├── Router Cisco 2911 (Gateway)
+   ├── Switch Cisco 2960 (Núcleo)
+   ├── 6 Servidores Especializados
+   ├── 3 Access Points WiFi
+   ├── Múltiplos Clientes (PCs, Laptops)
+   └── Impressoras e Dispositivos Periféricos
+            </div>
+
+            <h4 style="color: #333; margin-top: 30px;">3. Visualize a Análise Técnica</h4>
+            <p style="color: #666;">Acesse a documentação técnica completa com explicações detalhadas:</p>
+            <div class="code-block">
+📊 Análise Técnica Disponível:
+   ├── Configurações de DNS e DHCP
+   ├── Especificações de Redes WiFi (2.4 GHz, WPA2)
+   ├── Testes de Conectividade (Ping, Latência)
+   ├── Monitoramento Wireless
+   ├── Arquitetura de Servidores
+   └── Resultados de Performance
+            </div>
+
+            <h4 style="color: #333; margin-top: 30px;">4. Conheça a Equipe</h4>
+            <p style="color: #666;">Saiba mais sobre os responsáveis pelo projeto:</p>
+            <div class="code-block">
+👥 Equipe do Projeto:
+   ├── Miguel - Analista de Infraestrutura
+   │   └── Responsável por DNS e DHCP
+   ├── Alder - Especialista em Wireless
+   │   └── Responsável por Redes WiFi
+   └── Projeto de Rede
+       └── Infraestrutura Completa
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Projeto Cisco Network | Documentação Técnica Educacional</p>
+    </footer>
+
+</body>
+</html>
+              <th>Rota</th>
+              <th>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GET</td>
+              <td>/users</td>
+              <td>Listar todos os utilizadores</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/users/:id</td>
+              <td>Obter um utilizador específico</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>/users</td>
+              <td>Criar novo utilizador</td>
+            </tr>
+            <tr>
+              <td>PUT</td>
+              <td>/users/:id</td>
+              <td>Atualizar utilizador</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td>/users/:id</td>
+              <td>Remover utilizador</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/health</td>
+              <td>Estado do servidor</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>🌐 Servidores Documentados</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>📂 FTP</h3>
+            <p><strong>Portas:</strong> 21/20</p>
+            <p>Transferência de ficheiros entre computadores na rede.</p>
+          </div>
+          <div class="card">
+            <h3>🌍 WEB</h3>
+            <p><strong>Portas:</strong> 80/443</p>
+            <p>Servidor HTTP/HTTPS para disponibilizar páginas web.</p>
+          </div>
+          <div class="card">
+            <h3>🔍 DNS</h3>
+            <p><strong>Porta:</strong> 53</p>
+            <p>Resolução de nomes de domínio para endereços IP.</p>
+          </div>
+          <div class="card">
+            <h3>⚙️ DHCP</h3>
+            <p><strong>Portas:</strong> 67/68</p>
+            <p>Atribuição dinâmica de endereços IP.</p>
+          </div>
+          <div class="card">
+            <h3>✉️ EMAIL</h3>
+            <p><strong>Portas:</strong> 25/110/143</p>
+            <p>SMTP, POP3 e IMAP para envio e recepção de emails.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Projeto serviços de rede </p>
+  </footer>
+
+  <script>
+    // Teste de conexão com o backend
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('http://localhost:3001/health')
+        .then(res => res.json())
+        .then(data => console.log('✅ Backend conectado:', data))
+        .catch(err => console.log('⚠️ Backend desconectado:', err.message));
+    });
+  </script>
+</body>
+</html>

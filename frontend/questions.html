@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perguntas & Respostas - NetProject</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-question {
+      background: #667eea;
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: #764ba2;
+    }
+
+    .faq-question.active {
+      background: #764ba2;
+    }
+
+    .faq-answer {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-left: 4px solid #667eea;
+      display: none;
+    }
+
+    .faq-answer.active {
+      display: block;
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon.active {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="index.html" style="text-decoration: none; color: #667eea; font-size: 18px; font-weight: 600;">← Voltar</a>
+        <div class="logo">
+          🖧 NetProject
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servers.html">Servidores</a></li>
+          <li><a href="questions.html">Perguntas</a></li>
+          <li><a href="users.html">Utilizadores</a></li>
+          <li><a href="image-guide.html">📸 Guia de Imagens</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>❓ Perguntas & Respostas</h1>
+      <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+        Responda a estas questões educacionais sobre redes e servidores para consolidar o seu conhecimento.
+      </p>
+
+      <!-- Pergunta 1 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>1️⃣ Como DHCP, DNS, WEB e EMAIL trabalham em conjunto?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          <h3>Resposta:</h3>
+          <p>Quando um utilizador liga um computador à rede:</p>
+          <ol style="margin-left: 1.5rem;">
+            <li><strong>DHCP:</strong> Atribui um endereço IP automaticamente</li>
+            <li><strong>DNS:</strong> Permite resolver nomes de domínio (ex: www.escola.pt) para IPs</li>
+            <li><strong>WEB:</strong> O utilizador acede a websites usando um navegador</li>
+            <li><strong>EMAIL:</strong> Pode enviar e receber emails através de servidores SMTP/POP3</li>
+          </ol>
+          <p><strong>Exemplo prático:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li>PC recebe IP 192.168.1.100 (DHCP)</li>
+            <li>Utilizador digita "www.escola.pt" no navegador</li>
+            <li>DNS traduz para 192.168.1.50</li>
+            <li>Navegador conecta-se ao servidor WEB em 192.168.1.50 e recebe o HTML</li>
+            <li>Utilizador acede webmail e envia um email</li>
+            <li>Email é encaminhado através do servidor SMTP</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pergunta 2 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>2️⃣ Qual é a importância prática do FTP numa escola?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          <h3>Resposta:</h3>
+          <p>O FTP é fundamental para a distribuição de materiais educacionais e recolha de trabalhos dos alunos:</p>
+          <ul style="margin-left: 1.5rem;">
+            <li><strong>Distribuição de Materiais:</strong> Professores colocam aulas em PDF, vídeos e exercícios num servidor FTP</li>
+            <li><strong>Acesso Controlado:</strong> Alunos autenticam-se com utilizador/password para descarregar materiais</li>
+            <li><strong>Entrega de Trabalhos:</strong> Alunos podem fazer upload dos trabalhos realizados</li>
+            <li><strong>Backup Centralizado:</strong> Todos os ficheiros da escola estão num único servidor</li>
+            <li><strong>Sem Necessidade de Email:</strong> Ficheiros grandes podem ser partilhados via FTP sem sobrecarregar o email</li>
+          </ul>
+          <p><strong>Segurança:</strong> Utilizar SFTP (FTP seguro) com encriptação é recomendado, especialmente com dados sensíveis de alunos.</p>
+        </div>
+      </div>
+
+      <!-- Pergunta 3 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>3️⃣ Quais são as consequências da falha do servidor DNS?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          <h3>Resposta:</h3>
+          <p>Se o servidor DNS falhar, as consequências são graves:</p>
+          <div style="background: #fff3cd; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+            <strong>⚠️ Impacto:</strong>
+            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+              <li><strong>Impossível acessar websites por nome:</strong> Utilizadores não conseguem aceder a www.google.com, www.escola.pt, etc.</li>
+              <li><strong>Email não funciona:</strong> Os clientes de email não conseguem conectar-se aos servidores (precisam de IPs)</li>
+              <li><strong>Apenas IPs funcionam:</strong> Se souber o IP (ex: 192.168.1.50), consegue aceder direto</li>
+              <li><strong>Serviços de rede degradados:</strong> Muitas aplicações dependem de DNS (chamadas LDAP, autenticação, etc.)</li>
+            </ul>
+          </div>
+          <p><strong>Solução:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li>Ter um servidor DNS redundante (backup)</li>
+            <li>Usar DNS externo (ex: 8.8.8.8 do Google) como fallback</li>
+            <li>Monitorizar a disponibilidade do DNS continuamente</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pergunta 4 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>4️⃣ Quando usar IP estático em vez de DHCP?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          <h3>Resposta:</h3>
+          <p><strong>Usar IP Estático para:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li><strong>Servidores:</strong> Web, FTP, DNS, Email — precisam de IPs fixos para serem acessíveis</li>
+            <li><strong>Impressoras de Rede:</strong> Utilizadores precisam de saber o IP para imprimir</li>
+            <li><strong>Routers/Gateways:</strong> Precisam de IP fixo como ponto de acesso predefinido</li>
+            <li><strong>Câmaras IP:</strong> Vigilância contínua necessita IP permanente</li>
+            <li><strong>Computadores Administrativos:</strong> Facilita acesso SSH/RDP para administração</li>
+          </ul>
+          <p><strong>Usar DHCP para:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li><strong>Computadores dos Alunos:</strong> Reduz configuração manual</li>
+            <li><strong>Laptops/Tablets:</strong> Conectam em diferentes redes com facilidade</li>
+            <li><strong>Dispositivos Móveis:</strong> WiFi é mais prático com DHCP</li>
+            <li><strong>Ambientes com muitos utilizadores:</strong> Evita conflitos de IPs</li>
+          </ul>
+          <p><strong>Boas Práticas:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li>Configurar servidores com IP estático no router (ex: 192.168.1.10)</li>
+            <li>Documentar IPs estáticos para referência</li>
+            <li>Utilizar reservas de DHCP para alguns clientes críticos (imprime, etc.)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pergunta 5 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>5️⃣ Qual é a diferença entre POP3 e IMAP?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          <h3>Resposta:</h3>
+          <table style="width: 100%; margin: 1rem 0;">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>POP3</th>
+                <th>IMAP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Armazenamento</strong></td>
+                <td>Descarrega para cliente</td>
+                <td>Fica no servidor</td>
+              </tr>
+              <tr>
+                <td><strong>Múltiplos Dispositivos</strong></td>
+                <td>❌ Não sincroniza</td>
+                <td>✅ Sincroniza automaticamente</td>
+              </tr>
+              <tr>
+                <td><strong>Acesso Offline</strong></td>
+                <td>✅ Sim (ficheiros locais)</td>
+                <td>❌ Não (precisa conexão)</td>
+              </tr>
+              <tr>
+                <td><strong>Uso de Banda</strong></td>
+                <td>Menor</td>
+                <td>Maior</td>
+              </tr>
+              <tr>
+                <td><strong>Ideal para:</strong></td>
+                <td>Desktop único</td>
+                <td>Múltiplos dispositivos/Mobile</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><strong>Exemplo:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li><strong>POP3:</strong> Você baixa um email no Outlook. O email é apagado do servidor. Se entrar no carro com o telemóvel, o email não está lá.</li>
+            <li><strong>IMAP:</strong> Você vê um email no Outlook. Se entrar no carro e abrir o Gmail, o mesmo email está lá com as mesmas pastas e status.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pergunta 6 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>6️⃣ O que é um "lease time" em DHCP?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          <h3>Resposta:</h3>
+          <p>O <strong>lease time</strong> é o tempo durante o qual um cliente pode usar um endereço IP atribuído pelo servidor DHCP.</p>
+          <ul style="margin-left: 1.5rem;">
+            <li><strong>Exemplo:</strong> Lease time de 24 horas significa que o PC pode usar o IP por 24 horas</li>
+            <li><strong>Após expira:</strong> O cliente entra novamente em contacto com DHCP para renovar ou obter um novo IP</li>
+            <li><strong>Valores típicos:</strong> 1 hora, 8 horas, 24 horas, 7 dias</li>
+          </ul>
+          <p><strong>Vantagens:</strong></p>
+          <ul style="margin-left: 1.5rem;">
+            <li>Reutilização de IPs quando dispositivos se desligam</li>
+            <li>Evita "vazamento" de IPs</li>
+            <li>Permite mudanças na rede (ex: expandir para novo sub-net)</li>
+          </ul>
+          <p><strong>Nota:</strong> Valores curtos (1h) são usados em redes com muitos dispositivos móveis. Valores longos (7 dias) em redes estáveis.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 NetProject — Projeto Educacional de Redes | Desenvolvido com ❤️</p>
+  </footer>
+
+  <script>
+    function toggleAnswer(element) {
+      const question = element;
+      const answer = element.nextElementSibling;
+      const icon = question.querySelector('.toggle-icon');
+
+      // Fechar todas as outras perguntas
+      document.querySelectorAll('.faq-answer.active').forEach(a => {
+        if (a !== answer) {
+          a.classList.remove('active');
+          a.previousElementSibling.classList.remove('active');
+          a.previousElementSibling.querySelector('.toggle-icon').classList.remove('active');
+        }
+      });
+
+      // Toggle da pergunta atual
+      question.classList.toggle('active');
+      answer.classList.toggle('active');
+      icon.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

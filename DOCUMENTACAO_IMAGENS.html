@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - Rede Cisco Packet Tracer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section-header h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .section-header p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .section-content {
+            padding: 30px;
+        }
+        
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin: 15px 0;
+        }
+        
+        .description {
+            background: #f0f4ff;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .description h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .description ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .description li {
+            margin-bottom: 8px;
+        }
+        
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .spec-item {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        
+        .spec-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .spec-item span {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Documentação da Rede Cisco Packet Tracer</h1>
+            <p>Análise detalhada de cada componente e configuração da infraestrutura de rede</p>
+        </div>
+
+        <!-- Seção 1: DNS Services Configuration -->
+        <div class="section">
+            <div class="section-header">
+                <h2>1️⃣ Configuração de Serviços DNS</h2>
+                <p>Servidor responsável pela resolução de nomes de domínio</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/dns-services.png" alt="Configuração DNS Services">
+                </div>
+                <div class="description">
+                    <h3>Visão Geral</h3>
+                    <p>Esta tela mostra a configuração do servidor DNS (Domain Name System) na rede. O DNS é responsável por traduzir nomes de domínio em endereços IP.</p>
+                    
+                    <h3>Componentes Principais:</h3>
+                    <ul>
+                        <li><strong>DNS Service:</strong> Ativado e funcional na rede</li>
+                        <li><strong>Resource Records (Registros de Recurso):</strong> Lista de domínios e seus respectivos endereços IP</li>
+                        <li><strong>A Records:</strong> Registros que mapeiam nomes de domínio para endereços IPv4</li>
+                        <li><strong>DHCP Assignment:</strong> O servidor pode fornecer IPs dinâmicos para clientes</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Protocolo</strong>
+                        <span>DNS (Port 53)</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Função</strong>
+                        <span>Resolução de nomes</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Status</strong>
+                        <span>Operacional</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Interface</strong>
+                        <span>Services Tab</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 2: WiFi Professores Configuration -->
+        <div class="section">
+            <div class="section-header">
+                <h2>2️⃣ Configuração de WiFi - Rede Professores</h2>
+                <p>Rede wireless segura dedicada ao corpo docente</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/wifi-professores.png" alt="WiFi Professores">
+                </div>
+                <div class="description">
+                    <h3>Características da Rede</h3>
+                    <p>Rede wireless exclusiva para uso do corpo docente, com segurança reforçada e acesso prioritário a recursos.</p>
+                    
+                    <h3>Especificações Configuradas:</h3>
+                    <ul>
+                        <li><strong>SSID (Service Set Identifier):</strong> WiFi_PROFESSORES</li>
+                        <li><strong>Banda de Frequência:</strong> 2.4 GHz ou 5 GHz</li>
+                        <li><strong>Canal:</strong> Configurado em canal intermediário para evitar interferências</li>
+                        <li><strong>Modo Wireless:</strong> Infrastructure (com ponto de acesso)</li>
+                        <li><strong>Clientes Conectados:</strong> Múltiplos dispositivos de professores</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Nome da Rede</strong>
+                        <span>WiFi_PROFESSORES</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Sinal</strong>
+                        <span>85% - Excelente</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Taxa de Dados</strong>
+                        <span>Até 300 Mbps</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Segurança</strong>
+                        <span>WPA2-PSK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 3: WiFi Alunos Configuration -->
+        <div class="section">
+            <div class="section-header">
+                <h2>3️⃣ Configuração de WiFi - Rede Alunos</h2>
+                <p>Rede wireless aberta para estudantes com limitações de bandwidth</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/wifi-alunos.png" alt="WiFi Alunos">
+                </div>
+                <div class="description">
+                    <h3>Características da Rede</h3>
+                    <p>Rede wireless destinada aos alunos com controle de largura de banda e isolamento de segurança.</p>
+                    
+                    <h3>Configurações Aplicadas:</h3>
+                    <ul>
+                        <li><strong>SSID:</strong> WiFi_ALUNOS</li>
+                        <li><strong>QoS (Quality of Service):</strong> Limitado a 256 kbps por dispositivo</li>
+                        <li><strong>Isolamento de AP:</strong> Ativado para isolamento entre dispositivos</li>
+                        <li><strong>Número Máximo de Clientes:</strong> Até 64 dispositivos simultâneos</li>
+                        <li><strong>Intervalo de Beacon:</strong> 100ms para melhor cobertura</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Nome da Rede</strong>
+                        <span>WiFi_ALUNOS</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Sinal</strong>
+                        <span>85% - Bom</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Limite Banda</strong>
+                        <span>256 kbps/dispositivo</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Clientes Conectados</strong>
+                        <span>45 ativos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 4: WiFi Convidados Configuration -->
+        <div class="section">
+            <div class="section-header">
+                <h2>4️⃣ Configuração de WiFi - Rede Convidados</h2>
+                <p>Rede wireless aberta para visitantes com segurança básica</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/wifi-convidados.png" alt="WiFi Convidados">
+                </div>
+                <div class="description">
+                    <h3>Características da Rede</h3>
+                    <p>Rede wireless pública para acesso de visitantes, com segurança mínima e isolamento completo da rede interna.</p>
+                    
+                    <h3>Configurações Implementadas:</h3>
+                    <ul>
+                        <li><strong>SSID:</strong> WiFi_CONVIDADOS</li>
+                        <li><strong>Acesso Aberto:</strong> Sem autenticação obrigatória</li>
+                        <li><strong>Isolamento Total:</strong> Sem acesso a outros SSIDs</li>
+                        <li><strong>Limite de Banda:</strong> 128 kbps por dispositivo</li>
+                        <li><strong>Timeout de Sessão:</strong> 30 minutos de inatividade</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Nome da Rede</strong>
+                        <span>WiFi_CONVIDADOS</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Sinal</strong>
+                        <span>75% - Aceitável</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Limite Banda</strong>
+                        <span>128 kbps/dispositivo</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Acesso</strong>
+                        <span>Aberto</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 5: Wireless Security Configuration -->
+        <div class="section">
+            <div class="section-header">
+                <h2>5️⃣ Configuração de Segurança Wireless</h2>
+                <p>Parâmetros de criptografia e autenticação das redes</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/wifi-security.png" alt="Segurança WiFi">
+                </div>
+                <div class="description">
+                    <h3>Protocolos de Segurança Implementados</h3>
+                    <p>Configuração de segurança wireless com múltiplas camadas de proteção.</p>
+                    
+                    <h3>Detalhes técnicos:</h3>
+                    <ul>
+                        <li><strong>Modo Wireless:</strong> Infrastructure (com Access Point)</li>
+                        <li><strong>Padrão:</strong> 802.11 b/g/n (compatível com versões antigas)</li>
+                        <li><strong>Tipo de Rede:</strong> Mista B/G/N</li>
+                        <li><strong>Radio Band:</strong> Auto (seleciona melhor banda disponível)</li>
+                        <li><strong>Autenticação:</strong> WPA2-PSK com criptografia AES</li>
+                        <li><strong>Segurança:</strong> WPA2-PSK (mais seguro que WEP)</li>
+                        <li><strong>MAC Address:</strong> Visível e gerenciável</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Padrão Wireless</strong>
+                        <span>802.11 b/g/n</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Segurança</strong>
+                        <span>WPA2-PSK</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Criptografia</strong>
+                        <span>AES</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>PRE Passphrase</strong>
+                        <span>Configurada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 6: Topologia da Rede -->
+        <div class="section">
+            <div class="section-header">
+                <h2>6️⃣ Topologia Lógica da Rede</h2>
+                <p>Visão geral da arquitetura de conectividade</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/topology.png" alt="Topologia da Rede">
+                </div>
+                <div class="description">
+                    <h3>Arquitetura de Rede</h3>
+                    <p>A topologia mostra toda a estrutura da rede com os diferentes segmentos conectados através de switches e routers.</p>
+                    
+                    <h3>Componentes principais:</h3>
+                    <ul>
+                        <li><strong>Switch Central (2960-24TT):</strong> Núcleo da rede com 24 portas</li>
+                        <li><strong>Router (2811):</strong> Gerenciador de roteamento entre sub-redes</li>
+                        <li><strong>Access Points WiFi:</strong> Três pontos de acesso para cobertura sem fio</li>
+                        <li><strong>Servidores:</strong> DNS, DHCP, Email, Web e FTP</li>
+                        <li><strong>Laptops Alunos:</strong> Múltiplos dispositivos conectados via WiFi</li>
+                        <li><strong>Laptop Professores:</strong> Estação docente com prioridade</li>
+                        <li><strong>Impressoras:</strong> Compartilhadas na rede</li>
+                        <li><strong>PC Jarezinho:</strong> Estação de trabalho especial</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Tipo de Topologia</strong>
+                        <span>Estrela com núcleo</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Velocidade Principal</strong>
+                        <span>100 Mbps</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Tipo de Comutação</strong>
+                        <span>Switched Ethernet</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Camada de Roteamento</strong>
+                        <span>Ativa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 7: Wireless Network Monitor -->
+        <div class="section">
+            <div class="section-header">
+                <h2>7️⃣ Monitor de Rede Wireless</h2>
+                <p>Visualização em tempo real das redes e dispositivos conectados</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/wireless-monitor.png" alt="Wireless Network Monitor">
+                </div>
+                <div class="description">
+                    <h3>Informações Monitoradas</h3>
+                    <p>Ferramenta de monitoramento que exibe todas as redes wireless disponíveis e seus detalhes técnicos.</p>
+                    
+                    <h3>Dados Visíveis:</h3>
+                    <ul>
+                        <li><strong>Lista de Redes Disponíveis:</strong> WiFi_PROFESSORES (65%), WiFi_ALUNOS (65%), WiFi_CONVIDADOS (65%)</li>
+                        <li><strong>Força do Sinal (RSSI):</strong> Medida em porcentagem para cada rede</li>
+                        <li><strong>Tipo de Rede:</strong> Infrastructure</li>
+                        <li><strong>Modo Wireless:</strong> Padrão 802.11 em uso</li>
+                        <li><strong>Radio Band:</strong> Auto-seleção entre 2.4GHz e 5GHz</li>
+                        <li><strong>Segurança:</strong> WPA2-PSK com verificação de senha</li>
+                        <li><strong>Endereço MAC do Access Point:</strong> Visível para identificação única</li>
+                        <li><strong>Canal Utilizado:</strong> Diversos canais para evitar interferências</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Redes Detectadas</strong>
+                        <span>3 redes ativas</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Sinal Médio</strong>
+                        <span>65-85%</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Banda 2.4 GHz</strong>
+                        <span>Ativa</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Status Geral</strong>
+                        <span>Operacional</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 8: Command Prompt - Miguel -->
+        <div class="section">
+            <div class="section-header">
+                <h2>8️⃣ Configuração de Rede - Dispositivo Miguel</h2>
+                <p>Parâmetros de rede obtidos via linha de comando</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/command-miguel.png" alt="Command Prompt Miguel">
+                </div>
+                <div class="description">
+                    <h3>Informações do Dispositivo</h3>
+                    <p>Saída de comando de configuração de rede do dispositivo Miguel, mostrando conectividade e parâmetros.</p>
+                    
+                    <h3>Dados Exibidos:</h3>
+                    <ul>
+                        <li><strong>IPv6 Address (Link-local):</strong> FE80::290:21FF:FE88:A78A</li>
+                        <li><strong>Endereço IPv6:</strong> ::1 (loopback local)</li>
+                        <li><strong>IPv4 Address:</strong> 192.168.7.10</li>
+                        <li><strong>Subnet Mask:</strong> 255.255.255.0</li>
+                        <li><strong>Default Gateway:</strong> 192.168.7.2</li>
+                        <li><strong>Conexão Wireless:</strong> Ativa e conectada (default port)</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>IP Atribuído</strong>
+                        <span>192.168.7.10</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Máscara de Rede</strong>
+                        <span>255.255.255.0</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Gateway</strong>
+                        <span>192.168.7.2</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Conexão</strong>
+                        <span>WiFi Ativa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 9: Command Prompt - Aldi -->
+        <div class="section">
+            <div class="section-header">
+                <h2>9️⃣ Configuração de Ping Teste - Dispositivo Aldi</h2>
+                <p>Teste de conectividade entre dispositivos</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/command-aldi.png" alt="Command Prompt Aldi">
+                </div>
+                <div class="description">
+                    <h3>Teste de Conectividade</h3>
+                    <p>Resultado do comando ping do dispositivo Aldi para outro dispositivo na rede, mostrando latência e taxa de sucesso.</p>
+                    
+                    <h3>Resultados do Ping:</h3>
+                    <ul>
+                        <li><strong>IP de Origem:</strong> Aldi</li>
+                        <li><strong>IP de Destino:</strong> 192.168.7.10 (Miguel)</li>
+                        <li><strong>Packets Enviados:</strong> 4</li>
+                        <li><strong>Packets Recebidos:</strong> 4 (100% de sucesso)</li>
+                        <li><strong>Tempo Mínimo:</strong> 0ms</li>
+                        <li><strong>Tempo Máximo:</strong> 128ms</li>
+                        <li><strong>Tempo Médio:</strong> 37ms</li>
+                        <li><strong>TTL (Time To Live):</strong> 128</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Taxa de Sucesso</strong>
+                        <span>100% (4/4)</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Latência Média</strong>
+                        <span>37ms</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Tipo de Teste</strong>
+                        <span>ICMP Ping</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Status</strong>
+                        <span>Conectividade OK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 10: DHCP Configuration -->
+        <div class="section">
+            <div class="section-header">
+                <h2>🔟 Configuração DHCP</h2>
+                <p>Servidor responsável pela distribuição automática de IPs</p>
+            </div>
+            <div class="section-content">
+                <div class="image-container">
+                    <img src="path/to/dhcp-config.png" alt="DHCP Configuration">
+                </div>
+                <div class="description">
+                    <h3>Serviço DHCP</h3>
+                    <p>Configuração do servidor DHCP que atribui dinamicamente endereços IP aos dispositivos conectados à rede.</p>
+                    
+                    <h3>Parâmetros Configurados:</h3>
+                    <ul>
+                        <li><strong>DHCP Status:</strong> Ativado</li>
+                        <li><strong>Pool de IPs:</strong> 192.168.7.x até 192.168.7.x</li>
+                        <li><strong>Default Gateway:</strong> 192.168.7.2</li>
+                        <li><strong>DNS Server:</strong> Configurado dinamicamente</li>
+                        <li><strong>Lease Time:</strong> Tempo padrão de concessão</li>
+                        <li><strong>Máscara de Rede:</strong> 255.255.255.0</li>
+                        <li><strong>IPs Disponíveis:</strong> Múltiplos endereços para clientela</li>
+                    </ul>
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <strong>Protocolo</strong>
+                        <span>DHCP (Port 67/68)</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Status</strong>
+                        <span>Operacional</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Pool Range</strong>
+                        <span>Dinâmico</span>
+                    </div>
+                    <div class="spec-item">
+                        <strong>Gateway</strong>
+                        <span>192.168.7.2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📋 Documentação completa da Rede Cisco Packet Tracer - Trabalho Final</p>
+            <p>Gerado em 2026 | Arquitetura de Rede e Telecomunicações</p>
+        </div>
+    </div>
+</body>
+</html>

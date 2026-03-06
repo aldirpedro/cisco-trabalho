@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários - Cisco Network</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-section h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: #667eea;
+        }
+
+        .header-section p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .users-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .user-header h3 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .user-role {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .user-content {
+            padding: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-online {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-offline {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .detailed-view {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .detailed-view.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .profile-header {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .profile-img {
+            flex-shrink: 0;
+        }
+
+        .profile-img img {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .profile-info h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+
+        .profile-info .role {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .profile-table {
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        .profile-table tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .profile-table td {
+            padding: 12px 0;
+            font-size: 14px;
+        }
+
+        .profile-table td:first-child {
+            color: #999;
+            font-weight: 600;
+            width: 30%;
+        }
+
+        .profile-table td:last-child {
+            color: #333;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #667eea;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .section-description {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 1px solid #667eea30;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .achievement-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .achievement-card h4 {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .achievement-card p {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .profile-img img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .header-section {
+                padding: 20px;
+            }
+
+            .container {
+                margin: 20px auto;
+            }
+
+            .users-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" style="text-decoration: none; color: #667eea; font-size: 20px; font-weight: 600;">← Voltar</a>
+            <h1>👥 Usuários - Cisco Network</h1>
+        </div>
+        <a href="image-guide.html" style="text-decoration: none; color: #667eea; font-size: 14px; font-weight: 600;">📸 Guia de Imagens</a>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section">
+            <h2>Equipe de Trabalho</h2>
+            <p>Conheça os membros responsáveis pelo projeto de infraestrutura de rede utilizando Cisco Packet Tracer, bem como as respectivas responsabilidades e conquistas.</p>
+        </div>
+
+        <!-- Users Grid -->
+        <div class="users-grid" id="usersGrid">
+            <!-- Users cards will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Detailed Views -->
+    <div class="container">
+        <div class="detailed-view" id="miguel-detail">
+            <button class="close-btn" onclick="closeDetailView()">×</button>
+            
+            <div class="profile-header">
+                <div class="profile-img">
+                    <div style="width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: white;">M</div>
+                </div>
+                <div class="profile-info">
+                    <h3>Miguel</h3>
+                    <div class="role">Analista de Infraestrutura</div>
+                    <div class="status-badge status-online">● Online</div>
+                    
+                    <table class="profile-table">
+                        <tbody>
+                            <tr>
+                                <td>Email</td>
+                                <td>miguel@cisco.net</td>
+                            </tr>
+                            <tr>
+                                <td>Especialidade</td>
+                                <td>Configuração DNS e DHCP</td>
+                            </tr>
+                            <tr>
+                                <td>Departamento</td>
+                                <td>Infraestrutura de Rede</td>
+                            </tr>
+                            <tr>
+                                <td>Experiência</td>
+                                <td>5+ anos em rede</td>
+                            </tr>
+                            <tr>
+                                <td>IP Atribuído</td>
+                                <td>192.168.7.10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-title">Certificações</div>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h4>CCNA</h4>
+                    <p>Cisco Certified Network Associate</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">📜</div>
+                    <h4>CCNP</h4>
+                    <p>Cisco Certified Network Professional</p>
+                </div>
+            </div>
+
+            <div class="section-title">Responsabilidades</div>
+            <div class="section-description">
+                <p><strong>Miguel</strong> é o responsável principal pela configuração de serviços críticos da infraestrutura:</p><br>
+                <strong>✓ Configuração do Servidor DNS</strong><br>
+                Implementou e validou o servidor DNS para resolução de nomes de domínio, garantindo que todos os computadores na rede possam acessar serviços por nome qualificado.<br><br>
+                <strong>✓ Configuração do Servidor DHCP</strong><br>
+                Configurou o protocolo DHCP para atribuição automática de endereços IP aos dispositivos (IPv4 e IPv6), definindo subnets, gateways padrão e servidores DNS.<br><br>
+                <strong>✓ Testes de Conectividade</strong><br>
+                Realizou testes de ping bem-sucedidos (192.168.7.12) com latência de 5-13ms, confirmando a conectividade entre dispositivos.
+            </div>
+
+            <div class="section-title">Contribuições Técnicas</div>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🌐</div>
+                    <h4>DNS Server</h4>
+                    <p>Servidor DNS operacional e testado</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🔌</div>
+                    <h4>DHCP Server</h4>
+                    <p>Atribuição dinâmica de IPs funcional</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">✓</div>
+                    <h4>Testes</h4>
+                    <p>Validação de conectividade completa</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detailed-view" id="alder-detail">
+            <button class="close-btn" onclick="closeDetailView()">×</button>
+            
+            <div class="profile-header">
+                <div class="profile-img">
+                    <div style="width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: white;">A</div>
+                </div>
+                <div class="profile-info">
+                    <h3>Alder</h3>
+                    <div class="role">Especialista em Redes Wireless</div>
+                    <div class="status-badge status-online">● Online</div>
+                    
+                    <table class="profile-table">
+                        <tbody>
+                            <tr>
+                                <td>Email</td>
+                                <td>alder@cisco.net</td>
+                            </tr>
+                            <tr>
+                                <td>Especialidade</td>
+                                <td>WiFi e Comunicações Wireless</td>
+                            </tr>
+                            <tr>
+                                <td>Departamento</td>
+                                <td>Redes Wireless</td>
+                            </tr>
+                            <tr>
+                                <td>Experiência</td>
+                                <td>7+ anos em wireless</td>
+                            </tr>
+                            <tr>
+                                <td>IP Atribuído</td>
+                                <td>192.168.7.12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-title">Certificações</div>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h4>CCNA</h4>
+                    <p>Cisco Certified Network Associate</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">📡</div>
+                    <h4>Wireless Specialist</h4>
+                    <p>Especialista em Redes Wireless</p>
+                </div>
+            </div>
+
+            <div class="section-title">Responsabilidades</div>
+            <div class="section-description">
+                <p><strong>Alder</strong> é o especialista em tecnologias wireless e liderou a implementação das redes WiFi:</p><br>
+                <strong>✓ Configuração de 3 Redes WiFi Segregadas</strong><br>
+                Implementou três redes wireless independentes (WIFI_PROFESSORES, WIFI_ALUNOS, WIFI_CONVIDADOS) cada uma com seus próprios SSIDs, segurança WPA2-PSK e configurações de banda.<br><br>
+                <strong>✓ Segurança Wireless</strong><br>
+                Configurou encriptação WPA2-PSK com senhas fortes em todas as redes, garantindo proteção contra acesso não autorizado.<br><br>
+                <strong>✓ Testes de Cobertura</strong><br>
+                Validou a cobertura wireless de 256 metros e realizou testes de conectividade, alcançando sucesso total com zero perda de pacotes.
+            </div>
+
+            <div class="section-title">Contribuições Técnicas</div>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">📡</div>
+                    <h4>3 Redes WiFi</h4>
+                    <p>Segmentação wireless completa</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🔐</div>
+                    <h4>Segurança WPA2</h4>
+                    <p>Encriptação em todas as redes</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">📊</div>
+                    <h4>Monitor Wireless</h4>
+                    <p>Sistema de monitoramento integrado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detailed-view" id="projeto-detail">
+            <button class="close-btn" onclick="closeDetailView()">×</button>
+            
+            <div class="profile-header">
+                <div class="profile-img">
+                    <div style="width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 60px; color: white;">🏢</div>
+                </div>
+                <div class="profile-info">
+                    <h3>Projeto de Rede</h3>
+                    <div class="role">Infraestrutura Completa CISCO</div>
+                    <div class="status-badge status-online">● Operacional</div>
+                    
+                    <table class="profile-table">
+                        <tbody>
+                            <tr>
+                                <td>Status</td>
+                                <td><strong style="color: #2e7d32;">Completo e Testado</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Componentes</td>
+                                <td>7 principais (Switches, Routers, Servidores)</td>
+                            </tr>
+                            <tr>
+                                <td>Serviços Ativos</td>
+                                <td>7 (DNS, DHCP, HTTP, Email, FTP, Wireless)</td>
+                            </tr>
+                            <tr>
+                                <td>Redes WiFi</td>
+                                <td>3 (Professores, Alunos, Convidados)</td>
+                            </tr>
+                            <tr>
+                                <td>Taxa de Sucesso</td>
+                                <td>100% - Zero perda de pacotes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-title">Arquitetura da Rede</div>
+            <div class="section-description">
+                O projeto implementa uma infraestrutura de rede completa utilizando Cisco Packet Tracer, incluindo:<br><br>
+                <strong>Camada de Acesso:</strong> 3 Access Points wireless com cobertura de 256 metros cada<br>
+                <strong>Camada de Distribuição:</strong> Switch Cisco 2960 com 24 portas Gigabit<br>
+                <strong>Camada de Núcleo:</strong> Router Cisco 2911 com conectividade internet<br>
+                <strong>Camada de Aplicação:</strong> 7 servidores especializados em diferentes serviços
+            </div>
+
+            <div class="section-title">Serviços Implementados</div>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🌐</div>
+                    <h4>DNS Server</h4>
+                    <p>Resolução de nomes configurada</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🔌</div>
+                    <h4>DHCP Server</h4>
+                    <p>Atribuição automática de IPs</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">📡</div>
+                    <h4>Access Points</h4>
+                    <p>3 redes wireless segregadas</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🖥️</div>
+                    <h4>Web Server</h4>
+                    <p>HTTP/HTTPS operacional</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">📧</div>
+                    <h4>Mail Server</h4>
+                    <p>Serviço de email implementado</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">📁</div>
+                    <h4>FTP Server</h4>
+                    <p>Transferência de arquivos</p>
+                </div>
+            </div>
+
+            <div class="section-title">Resultados e Métricas</div>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">✓</div>
+                    <h4>Conectividade Validada</h4>
+                    <p>100% de sucesso nos testes de ping</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">⚡</div>
+                    <h4>Latência Otimizada</h4>
+                    <p>5-13ms de tempo de resposta</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🔒</div>
+                    <h4>Segurança WPA2</h4>
+                    <p>Encriptação AES em todas as redes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User data
+        const users = [
+            {
+                id: 'miguel',
+                name: 'Miguel',
+                role: 'Analista de Infraestrutura',
+                status: 'online',
+                avatar: 'M',
+                email: 'miguel@cisco.net',
+                ip: '192.168.7.10',
+                color: '#667eea'
+            },
+            {
+                id: 'alder',
+                name: 'Aldir',
+                role: 'Especialista em Wireless',
+                status: 'online',
+                avatar: 'A',
+                email: 'aldir@cisco.net',
+                ip: '192.168.7.12',
+                color: '#764ba2'
+            },
+            {
+                id: 'projeto',
+                name: 'Projeto de Rede',
+                role: 'Infraestrutura Completa',
+                status: 'online',
+                avatar: '🏢',
+                email: 'projeto@cisco.net',
+                ip: 'N/A',
+                color: '#667eea'
+            }
+        ];
+
+        // Generate user cards
+        function generateUserCards() {
+            const grid = document.getElementById('usersGrid');
+            grid.innerHTML = users.map(user => `
+                <div class="user-card" onclick="openDetailView('${user.id}')">
+                    <div class="user-header">
+                        <div class="user-avatar" style="color: ${user.color}; font-size: 32px;">${user.avatar}</div>
+                        <h3>${user.name}</h3>
+                        <div class="user-role">${user.role}</div>
+                    </div>
+                    <div class="user-content">
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">${user.email}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">IP Address</div>
+                            <div class="info-value">${user.ip}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status</div>
+                            <div class="status-badge ${user.status === 'online' ? 'status-online' : 'status-offline'}">
+                                ● ${user.status === 'online' ? 'Online' : 'Offline'}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open detail view
+        function openDetailView(userId) {
+            // Close all detail views
+            document.querySelectorAll('.detailed-view').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Open selected detail view
+            const detailView = document.getElementById(userId + '-detail');
+            if (detailView) {
+                detailView.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Close detail view
+        function closeDetailView() {
+            document.querySelectorAll('.detailed-view').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', generateUserCards);
+    </script>
+
+</body>
+</html>

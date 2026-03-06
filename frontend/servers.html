@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cisco Packet Tracer · Infraestrutura de Rede</title>
+    <!-- Font Awesome 6 (gratuito) para ícones profissionais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f7 100%);
+            color: #1a2639;
+            line-height: 1.5;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 0.9rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0, 20, 50, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e2b5e, #3c4b9a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e6d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a i {
+            font-size: 1rem;
+            color: #4f6f8f;
+        }
+
+        .nav-links a:hover {
+            color: #3b4fe2;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* cards e superfícies */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.25);
+        }
+
+        .hero {
+            background: white;
+            border-radius: 2.5rem;
+            padding: 4rem 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 30px 50px -20px rgba(23, 45, 80, 0.3);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #162b4e, #2c3f7c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #2d3b5a;
+            max-width: 80%;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2b3d8f, #4155b2);
+            color: white;
+            box-shadow: 0 10px 20px -5px #2b3d8f80;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 24px -6px #2b3d8f;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2b3d8f;
+            color: #2b3d8f;
+        }
+
+        .btn-outline:hover {
+            background: #2b3d8f;
+            color: white;
+        }
+
+        /* estatísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            margin: 3rem 0 4rem;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 2rem 1.2rem;
+            border-radius: 1.8rem;
+            text-align: center;
+            box-shadow: 0 8px 22px #0b1a2e0d;
+            border: 1px solid #ffffff;
+            transition: 0.2s;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.02);
+            border-color: #8a9cf0;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1d2b58;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #4f5f84;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* seção de servidores (cards) */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 650;
+            color: #162b4e;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: #3f58b3;
+            font-size: 2rem;
+        }
+
+        .servers-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .server-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 12px 30px -8px rgba(20, 40, 70, 0.2);
+            border: 1px solid rgba(255,255,255,0.7);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .server-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -12px #1d306e;
+        }
+
+        .server-icon {
+            font-size: 2.8rem;
+            background: #eef3fe;
+            width: 70px;
+            height: 70px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            color: #2c3f7c;
+        }
+
+        .server-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: #121f3f;
+        }
+
+        .server-ip {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: #eef2f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #1f3370;
+            align-self: flex-start;
+            margin: 0.8rem 0 1rem;
+        }
+
+        .server-desc {
+            color: #2d405b;
+            margin-bottom: 1.2rem;
+            flex: 1;
+        }
+
+        .server-badge {
+            background: #d1defa;
+            color: #1e3181;
+            border-radius: 50px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        /* galeria de imagens estilo "packet tracer" */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .image-card {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 30, 60, 0.1);
+            border: 1px solid #ffffff70;
+            transition: 0.2s;
+        }
+
+        .image-card:hover {
+            box-shadow: 0 18px 36px -12px #293d7e;
+        }
+
+        .image-preview {
+            background: #101e30;
+            color: #bcd0f7;
+            padding: 1.5rem 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            border-bottom: 2px solid #3f5cb0;
+            position: relative;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .image-preview i {
+            color: #70a0ff;
+            margin-right: 5px;
+        }
+
+        .image-caption {
+            padding: 1.2rem 1.2rem 1.5rem;
+        }
+
+        .image-caption h4 {
+            font-weight: 700;
+            color: #111f42;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .image-caption p {
+            color: #42537b;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag {
+            background: #e3e9fc;
+            color: #1d2f62;
+            border-radius: 30px;
+            padding: 0.2rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* explicações técnicas (DNS, DHCP ...) */
+        .deepdive {
+            background: white;
+            border-radius: 2.5rem;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 30px 40px -20px #0f2349;
+        }
+
+        .deepdive h3 {
+            font-size: 2rem;
+            color: #10213e;
+            margin-bottom: 2rem;
+            font-weight: 650;
+        }
+
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .proto-item {
+            background: #f4f8ff;
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            border-left: 5px solid #3f5ab3;
+        }
+
+        .proto-item h4 {
+            font-size: 1.4rem;
+            color: #1b2b53;
+            margin-bottom: 1rem;
+        }
+
+        .proto-item p {
+            color: #2e4172;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .code-fragment {
+            background: #0c1428;
+            color: #bbd1ff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        .footer {
+            background: #09111f;
+            color: #b0c3e0;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 3rem 3rem 0 0;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+                flex-wrap: wrap;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .protocol-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1><i class="fas fa-network-wired" style="margin-right: 8px; background: linear-gradient(135deg,#1e2b5e,#3c4b9a); background-clip: text; -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i> Cisco Packet Tracer Lab</h1>
+        <ul class="nav-links">
+            <li><a href="#inicio"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#servidores"><i class="fas fa-server"></i> Servidores</a></li>
+            <li><a href="#galeria"><i class="fas fa-camera-retro"></i> Galeria</a></li>
+            <li><a href="#explicacoes"><i class="fas fa-book-open"></i> Explicações</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="inicio">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>🌐 Infraestrutura de Rede<br>com Cisco Packet Tracer</h1>
+            <p>Documentação interativa do projeto final — topologia completa com servidores DNS, DHCP, Web, Email, FTP, redes Wi‑Fi segregadas e testes de conectividade.</p>
+            <div class="btn-group">
+                <a href="#servidores" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Explorar servidores</a>
+                <a href="#galeria" class="btn btn-outline"><i class="fas fa-images"></i> Ver capturas</a>
+            </div>
+        </div>
+
+        <!-- stats baseadas no projeto -->
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-number">7</div><div class="stat-label">servidores ativos</div></div>
+            <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">redes Wi‑Fi (WPA2)</div></div>
+            <div class="stat-item"><div class="stat-number">192.168.7.x</div><div class="stat-label">sub‑rede /24</div></div>
+            <div class="stat-item"><div class="stat-number">6+</div><div class="stat-label">dispositivos clientes</div></div>
+        </div>
+
+        <!-- Cards dos servidores (baseado na imagem IMG_4155) -->
+        <div class="section-title" id="servidores"><i class="fas fa-cube"></i> Servidores implementados</div>
+        <div class="servers-showcase">
+            <div class="server-card"><div class="server-icon"><i class="fas fa-database"></i></div><div class="server-name">DNS</div><div class="server-ip">192.168.7.2</div><div class="server-desc">Traduz nomes (epf.com → 192.168.7.6). Porta 53 UDP.</div><span class="server-badge">A record configurado</span></div>
+            <div class="server-card"><div class="server-icon"><i class="fas fa-dharmachakra"></i></div><div class="server-name">DHCP</div><div class="server-ip">192.168.7.4</div><div class="server-desc">Atribuição automática IP, gateway 192.168.7.2, DNS 192.168.7.3.</div><span class="server-badge">pool 192.168.7.100-200</span></div>
+            <div class="server-card"><div class="server-icon"><i class="fas fa-globe"></i></div><div class="server-name">WEB</div><div class="server-ip">192.168.7.5</div><div class="server-desc">Servidor HTTP (porta 80). Página inicial "escola.pt".</div><span class="server-badge">disponível</span></div>
+            <div class="server-card"><div class="server-icon"><i class="fas fa-envelope"></i></div><div class="server-name">EMAIL</div><div class="server-ip">192.168.7.6</div><div class="server-desc">SMTP (25), POP3 (110), IMAP (143). Contas: professor, aluno.</div><span class="server-badge">correio interno</span></div>
+            <div class="server-card"><div class="server-icon"><i class="fas fa-file-export"></i></div><div class="server-name">FTP</div><div class="server-ip">192.168.7.7</div><div class="server-desc">Transferência de arquivos (portas 20/21). Upload de materiais.</div><span class="server-badge">auth por senha</span></div>
+            <div class="server-card"><div class="server-icon"><i class="fas fa-cloud-upload-alt"></i></div><div class="server-name">TFTP</div><div class="server-ip">192.168.7.2</div><div class="server-desc">Trivial FTP (UDP 69) para boot de dispositivos.</div><span class="server-badge">sem autenticação</span></div>
+        </div>
+
+        <!-- Galeria de imagens do Packet Tracer (representações a partir dos IMG_xxxx) -->
+        <div class="section-title" id="galeria"><i class="fas fa-camera"></i> Capturas de tela do projeto</div>
+        <div class="gallery-grid">
+            <div class="image-card"><div class="image-preview"><i class="fas fa-wifi"></i> Wi‑Fi PROFESSORES<br>SSID: WIFI_PROFESSORES<br>Channel: 6 (2.4GHz)<br>Auth: WPA2-PSK / AES</div><div class="image-caption"><h4>📡 Access Point – Professores</h4><p>Configuração da interface wireless, WPA2‑PSK, cobertura 250m.</p><span class="tag">IMG_4150</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-wifi"></i> Wi‑Fi CONVIDADOS<br>SSID: WIFI_CONVIDADOS<br>Channel 6 · WPA2-PSK<br>PSK configurado</div><div class="image-caption"><h4>📡 Access Point – Convidados</h4><p>Rede isolada para visitantes, mesma potência e encriptação.</p><span class="tag">IMG_4151</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-wifi"></i> Wi‑Fi ALUNOS<br>SSID: WIFI_ALUNOS<br>2.4GHz ch6, 5GHz ch112<br>WPA2-PSK / AES</div><div class="image-caption"><h4>📡 Access Point – Alunos</h4><p>Rede dedicada para estudantes, segregação por SSID.</p><span class="tag">IMG_4152</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-signal"></i> Redes disponíveis<br>■ WIFI_PROFESSORES 65%<br>■ WIFI_ALUNOS 65%<br>■ WIFI_CONVIDADOS 65%<br>Security: WPA2-PSK</div><div class="image-caption"><h4>📱 Monitor wireless</h4><p>Laptop vê as três redes com intensidade de sinal.</p><span class="tag">IMG_4153 / IMG_4154</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-diagram-project"></i> Roteador 2911<br>Switch 2960-24TT<br>Servidores: DNS, DHCP, EMAIL, FTP, EB<br>APs e laptops (Miguel, Aldir...)</div><div class="image-caption"><h4>🖧 Topologia lógica</h4><p>Disposição dos dispositivos no Packet Tracer (IMG_4155).</p><span class="tag">topologia completa</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-terminal"></i> > ping 192.168.7.10<br>Resposta: time=1ms TTL=128<br>> ping 192.168.7.12<br>4 recebidos, 0% perda</div><div class="image-caption"><h4>✅ Testes de conectividade</h4><p>Pings entre laptops (IPs .10 e .12) com latência <12ms.</p><span class="tag">IMG_4159 / IMG_4160</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-sliders-h"></i> DNS Service ON<br>Name: epf.com<br>Address: 192.168.7.6<br>Tipo: A Record</div><div class="image-caption"><h4>🔍 Configuração DNS</h4><p>Aba Services do servidor DNS – registro estático.</p><span class="tag">IMG_4149</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-ip"></i> IP Configuration<br>IPv4: 192.168.7.4/24<br>Gateway: 192.168.7.2<br>DNS: 192.168.7.3</div><div class="image-caption"><h4>⚙️ IP estático (DHCP server)</h4><p>Configuração manual de interface (IMG_4167).</p><span class="tag">servidor DHCP</span></div></div>
+            <div class="image-card"><div class="image-preview"><i class="fas fa-laptop"></i> Wireless0: 192.168.7.10<br>Máscara 255.255.255.0<br>Default Gateway —<br> (obtido via DHCP)</div><div class="image-caption"><h4>💻 ipconfig no laptop Miguel</h4><p>IP automático .10 atribuído pelo DHCP.</p><span class="tag">IMG_4158</span></div></div>
+        </div>
+
+        <!-- Explicações detalhadas (deep dive) -->
+        <div class="deepdive" id="explicacoes">
+            <h3><i class="fas fa-microchip"></i> Como funcionam os protocolos (visão educacional)</h3>
+            <div class="protocol-grid">
+                <div class="proto-item">
+                    <h4><i class="fas fa-globe" style="color:#3f5ab3;"></i> DNS</h4>
+                    <p><strong>Domain Name System</strong> – converte nomes amigáveis (ex: epf.com) em endereços IP. No projeto, o servidor DNS em 192.168.7.2 possui um registro A que aponta epf.com → 192.168.7.6 (servidor de email).</p>
+                    <div class="code-fragment">consulta: www.escola.pt? → 192.168.7.5 (web)</div>
+                </div>
+                <div class="proto-item">
+                    <h4><i class="fas fa-clock"></i> DHCP</h4>
+                    <p><strong>Dynamic Host Configuration Protocol</strong> – fornece IP, máscara, gateway e DNS automaticamente aos clientes. Processo DORA (Discover, Offer, Request, Acknowledge).</p>
+                    <div class="code-fragment">Cliente .10 obteve IP via servidor 192.168.7.4</div>
+                </div>
+                <div class="proto-item">
+                    <h4><i class="fas fa-file-code"></i> HTTP / Web</h4>
+                    <p>O servidor web (192.168.7.5) entrega páginas utilizando o protocolo HTTP (porta 80). Quando um cliente digita o nome resolvido pelo DNS, o servidor responde com o conteúdo HTML.</p>
+                </div>
+                <div class="proto-item">
+                    <h4><i class="fas fa-mail-bulk"></i> E-mail (SMTP, POP3)</h4>
+                    <p>SMTP (25) para envio; POP3 (110) ou IMAP (143) para recebimento. O servidor de email 192.168.7.6 gerencia as contas locais.</p>
+                </div>
+                <div class="proto-item">
+                    <h4><i class="fas fa-exchange-alt"></i> FTP</h4>
+                    <p>Transferência de ficheiros com autenticação. Duas portas: 21 (comandos) e 20 (dados). Útil para partilha de material didático.</p>
+                </div>
+                <div class="proto-item">
+                    <h4><i class="fas fa-shield-alt"></i> Wi‑Fi WPA2</h4>
+                    <p>As três redes utilizam WPA2-PSK com criptografia AES. Cada uma opera nos canais 6 (2.4 GHz) e 112 (5 GHz), cobertura nominal de 250 m.</p>
+                </div>
+            </div>
+            <div style="margin-top: 2.5rem; background: #1e2642; color: #c0d0f0; border-radius: 2rem; padding: 2rem;">
+                <h4 style="color:white;">🖧 Cisco Packet Tracer — ambiente de simulação</h4>
+                <p style="margin-top:0.8rem;">O Packet Tracer permite modelar redes com equipamentos Cisco, servidores e clientes. Neste projeto foram utilizados: roteador 2911, switch 2960, três access points, seis servidores e múltiplos laptops (Miguel, Aldir, gang gang…). Os testes de ping comprovam conectividade total (0% perda).</p>
+                <div class="code-fragment" style="background:#0b1020;">! Rede 192.168.7.0/24 · gateway 192.168.7.2 · DNS local · DHCP ativo</div>
+            </div>
+        </div>
+
+        <!-- breve menção às imagens restantes (copper straight-through, PDU, etc) -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0;">
+            <span class="server-badge" style="background:#dde5f5;"><i class="fas fa-bolt"></i> Copper Straight-Through</span>
+            <span class="server-badge" style="background:#dde5f5;"><i class="fas fa-list-ul"></i> Toggle PDU List Window</span>
+            <span class="server-badge" style="background:#dde5f5;"><i class="fas fa-search"></i> Procurar / Top</span>
+            <span class="server-badge" style="background:#dde5f5;"><i class="fas fa-wifi"></i> WPC300N wireless module</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p><i class="fas fa-copyright"></i> 2025 Projeto de Redes — Documentação baseada em simulação Cisco Packet Tracer.  Todas as capturas (IMG_4147 a IMG_4160) representadas textualmente.</p>
+        <p style="margin-top:1rem; font-size:0.9rem;">Miguel · Aldir · Don't · gang gang · Jozinho · Infraestrutura e serviços</p>
+    </footer>
+</body>
+</html>
