@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Teste da API</h1>
+    <button onclick="testAPI()">Testar API</button>
+    <div id="result"></div>
+
+    <script>
+    async function testAPI() {
+        const result = document.getElementById('result');
+        result.innerHTML = 'Testando...';
+
+        try {
+            // Test POST
+            const response = await fetch('http://localhost:3001/inventory', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    dispositivo: 'Test Device',
+                    ip: '192.168.1.100',
+                    modelo: 'Test Model',
+                    status: 'Ativo'
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const postResult = await response.json();
+            result.innerHTML += '<br>POST: ' + JSON.stringify(postResult);
+
+            // Test GET
+            const getResponse = await fetch('http://localhost:3001/inventory');
+            const getResult = await getResponse.json();
+            result.innerHTML += '<br>GET: ' + JSON.stringify(getResult);
+
+            result.innerHTML += '<br><strong>✅ API funcionando!</strong>';
+
+        } catch (error) {
+            result.innerHTML += '<br><strong>❌ Erro:</strong> ' + error.message;
+            console.error('API Error:', error);
+        }
+    }
+    </script>
+</body>
+</html>

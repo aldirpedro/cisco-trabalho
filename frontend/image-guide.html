@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Imagens - Cisco Network</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .checklist li {margin-bottom: 8px;}
+        .code {background:#f5f5f5;padding:4px 8px;border-radius:4px;font-family:'Courier New',monospace;}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div style="display:flex; align-items:center; gap:15px;">
+            <a href="index.html" style="text-decoration:none; color:#667eea; font-size:20px; font-weight:600;">← Voltar</a>
+            <h1>📸 Guia de Imagens</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="servers.html">Servidores</a></li>
+            <li><a href="questions.html">Perguntas</a></li>
+            <li><a href="users.html">Usuários</a></li>
+            <li><a href="inventory.html">Inventário</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>📸 Guia de Imagens do Projeto Cisco Network</h2>
+        <p>Este guia ensina como capturar e inserir screenshots do Cisco Packet Tracer no site.</p>
+
+        <h3>1. Criar Pasta</h3>
+        <pre class="code">frontend/
+├── images/        ← Criar esta pasta
+├── index.html
+├── servers.html
+└── css/</pre>
+
+        <h3>2. Tirar Screenshots (6 imagens)</h3>
+        <table>
+            <thead><tr><th>#</th><th>O Quê</th><th>Nome do Arquivo</th><th>Instruções</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Topologia Completa</td><td>topology.png</td><td>Abra o Packet Tracer e capture a visão geral</td></tr>
+                <tr><td>2</td><td>Configuração DNS</td><td>dns-config.png</td><td>Services no servidor DNS</td></tr>
+                <tr><td>3</td><td>Configuração DHCP</td><td>dhcp-config.png</td><td>Services no servidor DHCP</td></tr>
+                <tr><td>4</td><td>Redes WiFi</td><td>wifi-config.png</td><td>Configuração dos access points</td></tr>
+                <tr><td>5</td><td>Monitor Wireless</td><td>wireless-monitor.png</td><td>Mostra as três redes</td></tr>
+                <tr><td>6</td><td>Testes de Ping</td><td>ping-test.png</td><td>Prompt de comando do PC</td></tr>
+            </tbody>
+        </table>
+
+        <h3>3. Salvar Imagens</h3>
+        <p>Use <strong>Print Screen</strong> e cole no Paint. Salve em <code>frontend/images/</code> como PNG.</p>
+
+        <h3>4. Adicionar ao HTML</h3>
+        <pre class="code">&lt;div class="image-container"&gt;
+    &lt;img src="images/topology.png" alt="Topologia Geral" style="width: 100%; border-radius: 8px;"&gt;
+    &lt;p&gt;&lt;strong&gt;Topologia Geral&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+        <h3>Checklist</h3>
+        <ul class="checklist">
+            <li>Criar pasta <code>frontend/images/</code></li>
+            <li>Capturar topology.png</li>
+            <li>Capturar dns-config.png</li>
+            <li>Capturar dhcp-config.png</li>
+            <li>Capturar wifi-config.png</li>
+            <li>Capturar wireless-monitor.png</li>
+            <li>Capturar ping-test.png</li>
+            <li>Salvar tudo em images/</li>
+            <li>Editar tags &lt;img&gt; em <code>servers.html</code></li>
+            <li>Abrir <code>index.html</code> e verificar</li>
+        </ul>
+
+        <h3>Dicas Rápidas</h3>
+        <ul>
+            <li>Use PNG em alta resolução (>=800x600px).</li>
+            <li>Nomes em minúsculas com hífen.</li>
+            <li>Adicione <code>style="width:100%;max-width:100%;"</code> às imagens.</li>
+            <li>Comprimir se tiver tamanho grande.</li>
+        </ul>
+
+        <h3>Links Úteis</h3>
+        <ul>
+            <li><a href="index.html">Página Principal</a></li>
+            <li><a href="servers.html">Servidores</a> (onde as imagens vão aparecer)</li>
+            <li><a href="inventory.html">Inventário</a></li>
+        </ul>
+
+        <h3>Dúvidas Frequentes</h3>
+        <p><strong>P:</strong> Onde salvo as imagens?<br>
+        <strong>R:</strong> Em <code>frontend/images/</code></p>
+        <p><strong>P:</strong> Qual formato usar?<br>
+        <strong>R:</strong> PNG recomendado, JPEG também serve.</p>
+        <p><strong>P:</strong> Caminho no HTML?<br>
+        <strong>R:</strong> <code>&lt;img src="images/nome.png" alt="..."&gt;</code></p>
+    </div>
+</body>
+</html>

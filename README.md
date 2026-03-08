@@ -39,6 +39,7 @@ Projeto educacional completo de infraestrutura de rede implementado em Cisco Pac
 
 ### 📊 Explorar Servidores
 - [Servidores](frontend/servers.html) - Documentação detalhada de cada servidor
+- [Inventário](frontend/inventory.html) - Lista e cadastro de equipamentos de rede (interativo com backend)
 
 ### 👥 Conhecer a Equipe
 - [Usuários](frontend/users.html) - Perfis de Miguel, Alder e projeto
@@ -96,6 +97,36 @@ python -m http.server 8000
 
 ---
 
+## 🛠️ Backend & Banco de Dados
+
+O projeto inclui um servidor Node.js com **Express** e **SQLite** para suportar funcionalidades dinâmicas (como inventário de equipamentos). Siga estes passos para ativar:
+
+```bash
+cd backend
+npm install        # instala dependências (express, sqlite3, cors, body-parser)
+node server.js     # inicia API em http://localhost:3001
+```
+
+Endpoints disponíveis:
+
+- `GET  /health`               → verifica o estado do serviço
+- `GET  /users`                → lista utilizadores cadastrados
+- `POST /users`                → cria um novo utilizador
+- `PUT  /users/:id`            → atualiza utilizador
+- `DELETE /users/:id`          → remove utilizador
+- `GET  /inventory`            → lista equipamentos de rede
+- `POST /inventory`            → adiciona novo equipamento
+- `PUT  /inventory/:id`        → atualiza equipamento
+- `DELETE /inventory/:id`      → exclui equipamento
+
+Além disso, enquanto o servidor Node estiver a correr, ele serve também os ficheiros estáticos do frontend. Basta abrir no navegador http://localhost:3001/index.html (ou qualquer outra página) para navegar sem precisar executar o Python HTTP server.
+
+O frontend interage com essa API através da página de inventário (veja seção abaixo).
+
+---
+
+---
+
 ## 📊 Resumo da Infraestrutura
 
 | Componente | Quantidade | Status |
@@ -146,6 +177,8 @@ python -m http.server 8000
 | **index.html** | Dashboard e visão geral |
 | **servers.html** | Detalhes de cada servidor |
 | **users.html** | Perfis da equipe |
+| **inventory.html** | Sistema de inventário de equipamentos (API conectada) |
+| **image-guide.html** | Guia passo‑a‑passo para capturar e inserir imagens |
 | **network_documentation.html** | Análise técnica completa |
 | **README_COMPLETE.md** | Documentação completa (Markdown) |
 

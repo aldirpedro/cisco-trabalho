@@ -199,6 +199,36 @@ form {
   border-left: 4px solid #667eea;
 }
 
+/* tabelas base para inventário e outros relatórios */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+th {
+  background: #667eea;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+.actions button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  font-size: 0.9em;
+}
+.actions .edit {
+  background: #ffc107;
+  color: #000;
+}
+.actions .delete {
+  background: #dc3545;
+  color: #fff;
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }

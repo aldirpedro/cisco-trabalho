@@ -13,6 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// servir arquivos estáticos do frontend (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 // Inicializar banco de dados SQLite
 const db = new sqlite3.Database(DATABASE, (err) => {
   if (err) {
@@ -39,6 +42,24 @@ function initDatabase() {
       console.error('Erro ao criar tabela:', err);
     } else {
       console.log('Tabela "users" pronta');
+    }
+  });
+
+  // tabela de inventário de equipamentos de rede
+  db.run(`
+    CREATE TABLE IF NOT EXISTS inventory (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      dispositivo TEXT NOT NULL,
+      ip TEXT NOT NULL,
+      modelo TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'Ativo',
+      criado_em TEXT DEFAULT (datetime('now'))
+    )
+  `, (err) => {
+    if (err) {
+      console.error('Erro ao criar tabela inventory:', err);
+    } else {
+      console.log('Tabela "inventory" pronta');
     }
   });
 }
@@ -151,6 +172,91 @@ app.delete('/users/:id', (req, res) => {
       res.status(404).json({ erro: 'Utilizador não encontrado' });
     } else {
       res.json({ mensagem: 'Utilizador removido com sucesso' });
+    }
+  });
+});
+
+// ------------------------------
+// ROTAS PARA INVENTÁRIO DE REDE
+// ------------------------------
+
+// GET - listar todos os equipamentos
+app.get('/inventory', (req, res) => {
+  db.all('SELECT * FROM inventory ORDER BY criado_em DESC', (err, rows) => {
+    if (err) {
+      res.status(500).json({ erro: err.message });
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+// GET - equipamento por id
+app.get('/inventory/:id', (req, res) => {
+  const { id } = req.params;
+  db.get('SELECT * FROM inventory WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ erro: err.message });
+    } else if (!row) {
+      res.status(404).json({ erro: 'Equipamento não encontrado' });
+    } else {
+      res.json(row);
+    }
+  });
+});
+
+// POST - adicionar equipamento
+app.post('/inventory', (req, res) => {
+  const { dispositivo, ip, modelo, status = 'Ativo' } = req.body;
+  if (!dispositivo || !ip || !modelo) {
+    return res.status(400).json({ erro: 'Dispositivo, IP e modelo são obrigatórios' });
+  }
+  const query = `
+    INSERT INTO inventory (dispositivo, ip, modelo, status)
+    VALUES (?, ?, ?, ?)
+  `;
+  db.run(query, [dispositivo, ip, modelo, status], function(err) {
+    if (err) {
+      res.status(500).json({ erro: err.message });
+    } else {
+      res.status(201).json({ id: this.lastID, dispositivo, ip, modelo, status, criado_em: new Date().toISOString() });
+    }
+  });
+});
+
+// PUT - atualizar equipamento
+app.put('/inventory/:id', (req, res) => {
+  const { id } = req.params;
+  const { dispositivo, ip, modelo, status = 'Ativo' } = req.body;
+  if (!dispositivo || !ip || !modelo) {
+    return res.status(400).json({ erro: 'Dispositivo, IP e modelo são obrigatórios' });
+  }
+  const query = `
+    UPDATE inventory
+    SET dispositivo = ?, ip = ?, modelo = ?, status = ?
+    WHERE id = ?
+  `;
+  db.run(query, [dispositivo, ip, modelo, status, id], function(err) {
+    if (err) {
+      res.status(500).json({ erro: err.message });
+    } else if (this.changes === 0) {
+      res.status(404).json({ erro: 'Equipamento não encontrado' });
+    } else {
+      res.json({ mensagem: 'Equipamento atualizado com sucesso' });
+    }
+  });
+});
+
+// DELETE - remover equipamento
+app.delete('/inventory/:id', (req, res) => {
+  const { id } = req.params;
+  db.run('DELETE FROM inventory WHERE id = ?', [id], function(err) {
+    if (err) {
+      res.status(500).json({ erro: err.message });
+    } else if (this.changes === 0) {
+      res.status(404).json({ erro: 'Equipamento não encontrado' });
+    } else {
+      res.json({ mensagem: 'Equipamento removido com sucesso' });
     }
   });
 });

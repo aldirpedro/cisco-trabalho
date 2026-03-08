@@ -44,6 +44,22 @@ Documentação detalhada de 7 servidores principais:
   - Ideal para boot de dispositivos
   - Leve e rápido
 
+
+
+---
+
+### 🛠️ Backend e Sistema de Inventário
+
+Para tornar o site interativo foi implementado um pequeno backend Node.js com Express e SQLite. Ele cria automaticamente duas tabelas (`users` e `inventory`) e expõe uma API REST:
+
+- `GET /health` – estado do servidor
+- `GET /users`, `POST /users`, `PUT /users/:id`, `DELETE /users/:id`
+- `GET /inventory`, `POST /inventory`, `PUT /inventory/:id`, `DELETE /inventory/:id`
+
+A página [inventário](frontend/inventory.html) do frontend consome esses endpoints e permite cadastrar equipamentos de rede de forma persistente. O backend também serve os arquivos estáticos do diretório `frontend` para facilitar a execução.
+
+Para iniciar basta navegar até `backend/` e executar `npm install` seguido de `node server.js`.
+
 ---
 
 ### 2. **Redes Wireless Implementadas**
