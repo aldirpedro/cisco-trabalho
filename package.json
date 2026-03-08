@@ -1,0 +1,10 @@
+{
+  "name": "cisco-trabalho",
+  "version": "1.0.0",
+  "description": "Projeto de redes com frontend estático e funções serverless para Vercel",
+  "main": "index.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {}
+}

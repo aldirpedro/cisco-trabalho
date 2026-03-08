@@ -110,7 +110,8 @@
     </div>
 
     <script>
-    const API_URL = 'http://localhost:3001/inventory';
+    // when deployed on Vercel the serverless function will live under /api
+    const API_URL = '/api/inventory';
     const STORAGE_KEY = 'inventarioRedeLocal';
     let inventario = [];
     let editId = null;

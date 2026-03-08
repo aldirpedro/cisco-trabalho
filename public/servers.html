@@ -20,6 +20,15 @@
             line-height: 1.5;
         }
 
+        /* garantir que o texto permaneça legível independentemente da cor de fundo */
+        body, .navbar, .nav-links a, .hero, .server-card, .stat-item, .glass-card,
+        .deepdive, .proto-item, .image-caption, .footer {
+            color: #1a2639 !important;
+        }
+        .nav-links a, .nav-links a:visited, .nav-links a:active {
+            color: #2c3e6d !important;
+        }
+
         .navbar {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(14px);
@@ -437,6 +446,8 @@
             <li><a href="#galeria"><i class="fas fa-camera-retro"></i> Galeria</a></li>
             <li><a href="#explicacoes"><i class="fas fa-book-open"></i> Explicações</a></li>
             <li><a href="inventory.html"><i class="fas fa-box"></i> Inventário</a></li>
+            <!-- botão de retorno para a página inicial -->
+            <li><a href="index.html"><i class="fas fa-arrow-left"></i> Voltar</a></li>
         </ul>
     </nav>
 
